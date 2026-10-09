@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useStore, useMe, personaFor } from './store'
-import { useRoute, go } from './router'
+import { useRoute } from './router'
 import { Icon, Modal, Toaster, Button, Chip } from './components/ui'
 import { ROLES, canNav, countdown, ms, nextHearing, visibleBills, visibleItems, type NavKey, billLabel } from './lib'
 import type { Role } from './types'
@@ -91,7 +91,7 @@ function UserMenu({ onHelp }: { onHelp: () => void }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   useOutside(ref, () => setOpen(false))
-  const { role, setRole, setUser, userId, data, reset, simulateLegislature, guideOpen, setGuide } = useStore()
+  const { role, setRole, setUser, userId, data, reset, simulateLegislature } = useStore()
   const me = useMe()
   const people = data.staff.filter(s => s.role === role)
   return (
@@ -114,7 +114,6 @@ function UserMenu({ onHelp }: { onHelp: () => void }) {
           </select>
           <div className="flex flex-col gap-2 border-t border-line pt-3">
             <Button variant="secondary" icon="refresh" onClick={() => { setOpen(false); void simulateLegislature() }}>Simulate legislature update</Button>
-            <Button variant="secondary" icon="star" onClick={() => { setGuide(!guideOpen); setOpen(false) }}>{guideOpen ? 'Hide' : 'Show'} Guide</Button>
             <Button variant="secondary" icon="undo" onClick={() => { setOpen(false); reset() }}>Reset workspace</Button>
             <Button variant="ghost" icon="help" onClick={() => { setOpen(false); onHelp() }}>Help</Button>
           </div>
@@ -234,44 +233,6 @@ function BottomTabs({ path }: { path: string }) {
   )
 }
 
-function DemoGuide() {
-  const { guideOpen, setGuide, setRole, data, simulateLegislature } = useStore()
-  const [collapsed, setCollapsed] = useState(true)
-  const scenarios: { title: string; steps: string; run: () => void }[] = [
-    { title: '1. New hearing in under 72 hours', steps: 'Refreshes collector-shaped hearing scenarios. Start Tracking to create work.', run: () => { setRole('Assigner'); void simulateLegislature(); go('/queue?tab=Assigned') } },
-    { title: '2. Route a fiscal note', steps: 'Create a fiscal note, then assign revenue and expenditure sections.', run: () => { setRole('Assigner'); go('/fiscal') } },
-    { title: '3. Compare SHB to HB, draft analysis', steps: 'Compare versions with redline, then open the analysis editor.', run: () => { setRole('Analyst'); go(`/compare?bill=${data.bills[0].id}`) } },
-    { title: '4. FTE calculation and prior products', steps: 'Edit hours in the calculator. The prior-product tab shows when no verified prior estimate is supplied.', run: () => { setRole('Analyst'); go('/fiscal') } },
-    { title: '5. Review, return, fix, executive review', steps: 'Reviewer approves or returns. Then switch to Executive Reviewer on a phone-width view.', run: () => { setRole('Reviewer'); go('/executive') } },
-    { title: '6. Transmit to OFM and view audit', steps: 'Preview Word, PDF and XML, transmit, then open Admin > Audit log.', run: () => { setRole('Manager'); go('/fiscal') } },
-    { title: '7. Manager workload and saved query', steps: 'Workload chart, then the saved fiscal query.', run: () => { setRole('Manager'); go('/reports?tab=query') } },
-  ]
-  if (!guideOpen) return null
-  return (
-    <aside aria-label="Workflow guide" className="fixed bottom-16 left-2 z-40 w-[min(92vw,22rem)] rounded-md border border-line bg-white shadow-xl md:bottom-4 md:left-auto md:right-4 md:w-80">
-      <div className="flex items-center justify-between rounded-t-md bg-navy px-3 py-2 text-white">
-        <h2 className="text-base font-semibold">Guide</h2>
-        <div className="flex gap-1">
-          <button type="button" className="rounded px-2 hover:bg-white/15" aria-expanded={!collapsed} onClick={() => setCollapsed(c => !c)}>{collapsed ? 'Expand' : 'Collapse'}</button>
-          <button type="button" className="rounded p-1 hover:bg-white/15" aria-label="Close workflow guide" onClick={() => setGuide(false)}><Icon name="x" size={16} /></button>
-        </div>
-      </div>
-      {!collapsed && (
-        <ul className="max-h-[55vh] divide-y divide-line overflow-auto">
-          {scenarios.map(s => (
-            <li key={s.title}>
-              <button type="button" onClick={s.run} className="block w-full px-3 py-2 text-left hover:bg-lightblue">
-                <span className="block text-[15px] font-semibold text-blue">{s.title}</span>
-                <span className="block text-sm text-muted">{s.steps}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </aside>
-  )
-}
-
 function Footer({ onA11y }: { onA11y: () => void }) {
   return (
     <footer className="on-dark mt-8 bg-navy px-4 py-5 text-sm text-white">
@@ -346,14 +307,13 @@ export default function App() {
         </div>
       </div>
       <BottomTabs path={route.path} />
-      <DemoGuide />
       <Toaster />
       {help && (
         <Modal title="Help" onClose={() => setHelp(false)}>
           <ul className="list-disc space-y-2 pl-5">
             <li>Use the role menu in the header to change persona. Navigation and buttons change by role.</li>
             <li>Every button, link and row responds to a single click or tap.</li>
-            <li>Open guide from the user menu for guided scenarios. Use Reset workspace to reload the seed content.</li>
+            <li>Use Reset workspace in the user menu to reload the seed content.</li>
             <li>All integrations (Legislature feed, OFM, SharePoint, Email, Teams) are simulated.</li>
           </ul>
         </Modal>

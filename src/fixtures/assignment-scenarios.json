@@ -1,0 +1,4789 @@
+{
+  "baselineUtc": "2026-10-05T00:00:00Z",
+  "items": [
+    {
+      "id": "BA-00001",
+      "type": "BA",
+      "billId": "LSC-2025-26-1941",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00002",
+      "type": "BA",
+      "billId": "LSC-2025-26-1983",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00003",
+      "type": "BA",
+      "billId": "LSC-2025-26-1796",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00004",
+      "type": "BA",
+      "billId": "LSC-2025-26-1376",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00005",
+      "type": "BA",
+      "billId": "LSC-2025-26-1170",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00006",
+      "type": "BA",
+      "billId": "LSC-2025-26-1069",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00007",
+      "type": "BA",
+      "billId": "LSC-2025-26-1795",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00008",
+      "type": "BA",
+      "billId": "LSC-2025-26-1295",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00009",
+      "type": "BA",
+      "billId": "LSC-2025-26-1526",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00010",
+      "type": "BA",
+      "billId": "LSC-2025-26-1909",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S04"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00011",
+      "type": "BA",
+      "billId": "LSC-2025-26-1701",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S04"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00012",
+      "type": "BA",
+      "billId": "LSC-2025-26-1500",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S04"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00013",
+      "type": "BA",
+      "billId": "LSC-2025-26-1634",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S05"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00014",
+      "type": "BA",
+      "billId": "LSC-2025-26-1155",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S05"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00015",
+      "type": "BA",
+      "billId": "LSC-2025-26-1187",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S05"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00016",
+      "type": "BA",
+      "billId": "LSC-2025-26-1128",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S06"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00017",
+      "type": "BA",
+      "billId": "LSC-2025-26-1302",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S06"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00018",
+      "type": "BA",
+      "billId": "LSC-2025-26-1501",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S06"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00019",
+      "type": "BA",
+      "billId": "LSC-2025-26-1210",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00020",
+      "type": "BA",
+      "billId": "LSC-2025-26-1570",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00021",
+      "type": "BA",
+      "billId": "LSC-2025-26-1980",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00022",
+      "type": "BA",
+      "billId": "LSC-2025-26-1923",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00023",
+      "type": "BA",
+      "billId": "LSC-2025-26-1823",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-05T16:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00024",
+      "type": "BA",
+      "billId": "LSC-2025-26-1717",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-05T02:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00025",
+      "type": "BA",
+      "billId": "LSC-2025-26-1833",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01",
+        "S09"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00026",
+      "type": "BA",
+      "billId": "LSC-2025-26-1347",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02",
+        "S10"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00027",
+      "type": "BA",
+      "billId": "LSC-2025-26-1078",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03",
+        "S11"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00028",
+      "type": "BA",
+      "billId": "LSC-2025-26-1066",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S04",
+        "S12"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00029",
+      "type": "BA",
+      "billId": "LSC-2025-26-1604",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S05",
+        "S13"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00030",
+      "type": "BA",
+      "billId": "LSC-2025-26-1541",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S06",
+        "S14"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00031",
+      "type": "BA",
+      "billId": "LSC-2025-26-1589",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S07",
+        "S15"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00032",
+      "type": "BA",
+      "billId": "LSC-2025-26-1544",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S08",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S08",
+        "S16"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00033",
+      "type": "BA",
+      "billId": "LSC-2025-26-1443",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S01",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S01",
+        "S17"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S17",
+        "S16",
+        "S18"
+      ],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00034",
+      "type": "BA",
+      "billId": "LSC-2025-26-1289",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S02",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S02",
+        "S18"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S18",
+        "S16",
+        "S17"
+      ],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "BA-00035",
+      "type": "BA",
+      "billId": "LSC-2025-26-1065",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S19"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "FN-00001",
+      "type": "FN",
+      "billId": "LSC-2025-26-1152",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S20"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "",
+          "assumptions": "",
+          "methodology": "",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-06T06:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-06T08:00:00Z",
+            "status": "Not started",
+            "hours": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "salary": 0,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00002",
+      "type": "FN",
+      "billId": "LSC-2025-26-1316",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S05",
+        "S21"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "",
+          "assumptions": "",
+          "methodology": "",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-06T06:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-06T08:00:00Z",
+            "status": "Not started",
+            "hours": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "salary": 0,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00003",
+      "type": "FN",
+      "billId": "LSC-2025-26-1239",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S06",
+        "S22"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "",
+          "assumptions": "",
+          "methodology": "",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-06T06:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S22",
+            "dueAt": "2026-10-06T08:00:00Z",
+            "status": "Not started",
+            "hours": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "salary": 0,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00004",
+      "type": "FN",
+      "billId": "LSC-2025-26-1622",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S07",
+        "S23"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "",
+          "assumptions": "",
+          "methodology": "",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-06T06:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S23",
+            "dueAt": "2026-10-06T08:00:00Z",
+            "status": "Not started",
+            "hours": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "salary": 0,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "BA-00036",
+      "type": "BA",
+      "billId": "LSC-2025-26-1571",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S08",
+        "S24"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 1,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": [],
+      "publishedVersion": 1
+    },
+    {
+      "id": "BA-00037",
+      "type": "BA",
+      "billId": "LSC-2025-26-1101",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01",
+        "S25"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "<h3>Assignment brief</h3><p>Review the official bill documents, assess agency impacts, and record findings for review.</p>",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "correspondence": []
+    },
+    {
+      "id": "FE-00001",
+      "type": "FE",
+      "billId": "LSC-2025-26-1202",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -25000,
+              -30000,
+              -35000,
+              -40000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S01",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              160,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S01"
+      }
+    },
+    {
+      "id": "FE-00002",
+      "type": "FE",
+      "billId": "LSC-2025-26-1476",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -50000,
+              -60000,
+              -70000,
+              -80000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S02",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              180,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S02"
+      }
+    },
+    {
+      "id": "FE-00003",
+      "type": "FE",
+      "billId": "LSC-2025-26-1857",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -75000,
+              -90000,
+              -105000,
+              -120000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S03",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              200,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S03"
+      }
+    },
+    {
+      "id": "FE-00004",
+      "type": "FE",
+      "billId": "LSC-2025-26-1551",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S04"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -100000,
+              -120000,
+              -140000,
+              -160000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S04",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              220,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S04"
+      }
+    },
+    {
+      "id": "FE-00005",
+      "type": "FE",
+      "billId": "LSC-2025-26-1537",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S05"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-07T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -125000,
+              -150000,
+              -175000,
+              -200000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S05",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              240,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S05"
+      }
+    },
+    {
+      "id": "FE-00006",
+      "type": "FE",
+      "billId": "LSC-2025-26-1227",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S06"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-07T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -150000,
+              -180000,
+              -210000,
+              -240000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S06",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              260,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S06"
+      }
+    },
+    {
+      "id": "FE-00007",
+      "type": "FE",
+      "billId": "LSC-2025-26-1198",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-08T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -175000,
+              -210000,
+              -245000,
+              -280000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S07",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              280,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S07"
+      }
+    },
+    {
+      "id": "FE-00008",
+      "type": "FE",
+      "billId": "LSC-2025-26-1291",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-09T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock planning estimate to assess potential agency workload and budget needs.",
+          "assumptions": "Illustrative quantities and rates; validate against the official bill before use.",
+          "methodology": "Multiply projected workload by unit costs and annualize the result.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -200000,
+              -240000,
+              -280000,
+              -320000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T20:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S08",
+            "dueAt": "2026-10-06T00:00:00Z",
+            "status": "Not started",
+            "hours": [
+              300,
+              120,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        },
+        "revenueAssigneeId": "S08"
+      }
+    },
+    {
+      "id": "DR-00001",
+      "type": "DR",
+      "billId": "LSC-2025-26-1202",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-04T22:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "House committee staff",
+      "question": "For 1202, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00002",
+      "type": "DR",
+      "billId": "LSC-2025-26-1476",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-05T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "High",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Senate committee staff",
+      "question": "For 1476, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00003",
+      "type": "DR",
+      "billId": "LSC-2025-26-1857",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S03"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Budget Office",
+      "question": "For 1857, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00004",
+      "type": "DR",
+      "billId": "LSC-2025-26-1551",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S04"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Legislative policy staff",
+      "question": "For 1551, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00005",
+      "type": "DR",
+      "billId": "LSC-2025-26-1537",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S05"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-07T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "House committee staff",
+      "question": "For 1537, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00006",
+      "type": "DR",
+      "billId": "LSC-2025-26-1227",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S11",
+      "assigneeIds": [
+        "S06"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-07T12:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Senate committee staff",
+      "question": "For 1227, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00007",
+      "type": "DR",
+      "billId": "LSC-2025-26-1198",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-08T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Budget Office",
+      "question": "For 1198, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "DR-00008",
+      "type": "DR",
+      "billId": "LSC-2025-26-1291",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-09T00:00:00Z",
+      "customerDueAt": "2026-10-09T04:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock assignment scenario linked to an official bill.",
+      "body": "Initial response: review the bill documents and coordinate with program owners to confirm available data.",
+      "topics": [],
+      "hasIssues": false,
+      "issueNotes": "",
+      "requester": "Legislative policy staff",
+      "question": "For 1291, identify the affected programs, available data sources, and information required to assess agency impacts."
+    },
+    {
+      "id": "FN-00005",
+      "type": "FN",
+      "billId": "LSC-2025-26-1931",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -10000,
+              -10000,
+              -10000,
+              -10000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Not started",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00006",
+      "type": "FN",
+      "billId": "LSC-2025-26-1368",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -10000,
+              -10000,
+              -10000,
+              -10000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Not started",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00007",
+      "type": "FN",
+      "billId": "LSC-2025-26-1917",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -20000,
+              -20000,
+              -20000,
+              -20000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00008",
+      "type": "FN",
+      "billId": "LSC-2025-26-1623",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -20000,
+              -20000,
+              -20000,
+              -20000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00009",
+      "type": "FN",
+      "billId": "LSC-2025-26-1550",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S05",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -30000,
+              -30000,
+              -30000,
+              -30000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00010",
+      "type": "FN",
+      "billId": "LSC-2025-26-1402",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S06",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -30000,
+              -30000,
+              -30000,
+              -30000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00011",
+      "type": "FN",
+      "billId": "LSC-2025-26-1380",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S07",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S07",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [
+        {
+          "id": "FN-00011-return",
+          "by": "S09",
+          "at": "2026-10-04T22:00:00Z",
+          "text": "Clarify workload assumptions and confirm unit costs.",
+          "kind": "return"
+        }
+      ],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -40000,
+              -40000,
+              -40000,
+              -40000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00012",
+      "type": "FN",
+      "billId": "LSC-2025-26-1322",
+      "title": "",
+      "stage": "Rework",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S08",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S08",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [
+        {
+          "id": "FN-00012-return",
+          "by": "S10",
+          "at": "2026-10-04T22:00:00Z",
+          "text": "Clarify workload assumptions and confirm unit costs.",
+          "kind": "return"
+        }
+      ],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -40000,
+              -40000,
+              -40000,
+              -40000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00013",
+      "type": "FN",
+      "billId": "LSC-2025-26-1317",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -50000,
+              -50000,
+              -50000,
+              -50000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00014",
+      "type": "FN",
+      "billId": "LSC-2025-26-1125",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S02",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S02",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -50000,
+              -50000,
+              -50000,
+              -50000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00015",
+      "type": "FN",
+      "billId": "LSC-2025-26-1625",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00016",
+      "type": "FN",
+      "billId": "LSC-2025-26-1557",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 3,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00017",
+      "type": "FN",
+      "billId": "LSC-2025-26-1399",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S05",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 1,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [
+        {
+          "id": "FN-00017-delivery",
+          "at": "2026-10-04T22:00:00Z",
+          "by": "S14",
+          "channel": "OFM Fiscal Note System",
+          "receipt": "SIM-FNS-00017",
+          "version": 1,
+          "status": "SENT",
+          "payload": "{\"integration\": \"Simulated integration\", \"scenario\": \"Fiscal note delivery\", \"fiscal\": {\"years\": [2027, 2028, 2029, 2030], \"narrative\": {\"summary\": \"Mock fiscal assessment for agency planning and workflow review.\", \"assumptions\": \"Illustrative staffing and workload assumptions; validate before official submission.\", \"methodology\": \"Estimate workload hours and annual agency costs.\", \"prior\": \"\"}, \"revenue\": [{\"fund\": \"General Fund-State\", \"values\": [-70000, -70000, -70000, -70000]}], \"revenueDueAt\": \"2026-10-05T18:00:00Z\", \"expenditure\": [{\"id\": \"sec-1\", \"name\": \"Agency administration\", \"assigneeId\": \"S20\", \"dueAt\": \"2026-10-05T20:00:00Z\", \"status\": \"Complete\", \"hours\": [120, 80, 80, 80], \"salary\": 80000, \"goods\": 0, \"equipment\": 0}], \"workPapers\": [], \"prior\": {\"productId\": \"\", \"billLabel\": \"\", \"narrative\": \"\", \"revenue\": [], \"totalFte\": 0}}}",
+          "demoResponse": "Simulated transmission completed."
+        }
+      ],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -70000,
+              -70000,
+              -70000,
+              -70000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00018",
+      "type": "FN",
+      "billId": "LSC-2025-26-1274",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S06",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S06",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 1,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 3,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [
+        {
+          "id": "FN-00018-delivery",
+          "at": "2026-10-04T22:00:00Z",
+          "by": "S14",
+          "channel": "OFM Fiscal Note System",
+          "receipt": "SIM-FNS-00018",
+          "version": 1,
+          "status": "SENT",
+          "payload": "{\"integration\": \"Simulated integration\", \"scenario\": \"Fiscal note delivery\", \"fiscal\": {\"years\": [2027, 2028, 2029, 2030], \"narrative\": {\"summary\": \"Mock fiscal assessment for agency planning and workflow review.\", \"assumptions\": \"Illustrative staffing and workload assumptions; validate before official submission.\", \"methodology\": \"Estimate workload hours and annual agency costs.\", \"prior\": \"\"}, \"revenue\": [{\"fund\": \"General Fund-State\", \"values\": [-70000, -70000, -70000, -70000]}], \"revenueDueAt\": \"2026-10-05T18:00:00Z\", \"expenditure\": [{\"id\": \"sec-1\", \"name\": \"Agency administration\", \"assigneeId\": \"S21\", \"dueAt\": \"2026-10-05T20:00:00Z\", \"status\": \"Complete\", \"hours\": [120, 80, 80, 80], \"salary\": 80000, \"goods\": 0, \"equipment\": 0}], \"workPapers\": [], \"prior\": {\"productId\": \"\", \"billLabel\": \"\", \"narrative\": \"\", \"revenue\": [], \"totalFte\": 0}}}",
+          "demoResponse": "Simulated transmission completed."
+        }
+      ],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -70000,
+              -70000,
+              -70000,
+              -70000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00019",
+      "type": "FN",
+      "billId": "LSC-2025-26-1216",
+      "title": "",
+      "stage": "Assigned",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S20"
+      ],
+      "startAt": "2026-10-03T12:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-06T16:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "",
+          "assumptions": "",
+          "methodology": "",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-06T06:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-06T08:00:00Z",
+            "status": "Not started",
+            "hours": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "salary": 0,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00020",
+      "type": "FN",
+      "billId": "LSC-2025-26-1202",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -20000,
+              -20000,
+              -20000,
+              -20000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00021",
+      "type": "FN",
+      "billId": "LSC-2025-26-1476",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -20000,
+              -20000,
+              -20000,
+              -20000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00022",
+      "type": "FN",
+      "billId": "LSC-2025-26-1857",
+      "title": "",
+      "stage": "In progress",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -20000,
+              -20000,
+              -20000,
+              -20000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00023",
+      "type": "FN",
+      "billId": "LSC-2025-26-1551",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S05",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -30000,
+              -30000,
+              -30000,
+              -30000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00024",
+      "type": "FN",
+      "billId": "LSC-2025-26-1537",
+      "title": "",
+      "stage": "In review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S06",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S06",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": false,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -30000,
+              -30000,
+              -30000,
+              -30000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00025",
+      "type": "FN",
+      "billId": "LSC-2025-26-1227",
+      "title": "",
+      "stage": "Executive review",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S01",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S01",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -50000,
+              -50000,
+              -50000,
+              -50000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "In progress",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00026",
+      "type": "FN",
+      "billId": "LSC-2025-26-1198",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00027",
+      "type": "FN",
+      "billId": "LSC-2025-26-1291",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 3,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00028",
+      "type": "FN",
+      "billId": "LSC-2025-26-1080",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S03",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S03",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00029",
+      "type": "FN",
+      "billId": "LSC-2025-26-1969",
+      "title": "",
+      "stage": "Approved",
+      "onHold": false,
+      "confidential": false,
+      "execReview": true,
+      "preparerId": "S04",
+      "reviewerId": "S10",
+      "assigneeIds": [
+        "S04",
+        "S21"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T12:00:00Z",
+      "customerDueAt": "2026-10-07T12:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": false,
+      "version": 0,
+      "execChain": [
+        "S16",
+        "S17",
+        "S18"
+      ],
+      "execIndex": 3,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -60000,
+              -60000,
+              -60000,
+              -60000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S21",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    },
+    {
+      "id": "FN-00030",
+      "type": "FN",
+      "billId": "LSC-2025-26-1610",
+      "title": "",
+      "stage": "Delivered",
+      "onHold": false,
+      "confidential": false,
+      "execReview": false,
+      "preparerId": "S05",
+      "reviewerId": "S09",
+      "assigneeIds": [
+        "S05",
+        "S20"
+      ],
+      "startAt": "2026-10-04T00:00:00Z",
+      "dueAt": "2026-10-06T00:00:00Z",
+      "customerDueAt": "2026-10-07T00:00:00Z",
+      "priority": "Normal",
+      "billChanged": false,
+      "locked": true,
+      "version": 1,
+      "execChain": [],
+      "execIndex": 0,
+      "reviewApproved": true,
+      "comments": [],
+      "history": [
+        {
+          "id": "FN-00030-delivery",
+          "at": "2026-10-04T22:00:00Z",
+          "by": "S14",
+          "channel": "OFM Fiscal Note System",
+          "receipt": "SIM-FNS-00030",
+          "version": 1,
+          "status": "SENT",
+          "payload": "{\"integration\": \"Simulated integration\", \"scenario\": \"Fiscal note delivery\", \"fiscal\": {\"years\": [2027, 2028, 2029, 2030], \"narrative\": {\"summary\": \"Mock fiscal assessment for agency planning and workflow review.\", \"assumptions\": \"Illustrative staffing and workload assumptions; validate before official submission.\", \"methodology\": \"Estimate workload hours and annual agency costs.\", \"prior\": \"\"}, \"revenue\": [{\"fund\": \"General Fund-State\", \"values\": [-70000, -70000, -70000, -70000]}], \"revenueDueAt\": \"2026-10-05T18:00:00Z\", \"expenditure\": [{\"id\": \"sec-1\", \"name\": \"Agency administration\", \"assigneeId\": \"S20\", \"dueAt\": \"2026-10-05T20:00:00Z\", \"status\": \"Complete\", \"hours\": [120, 80, 80, 80], \"salary\": 80000, \"goods\": 0, \"equipment\": 0}], \"workPapers\": [], \"prior\": {\"productId\": \"\", \"billLabel\": \"\", \"narrative\": \"\", \"revenue\": [], \"totalFte\": 0}}}",
+          "demoResponse": "Simulated transmission completed."
+        }
+      ],
+      "savedAt": "2026-10-04T23:00:00Z",
+      "provenance": "Mock fiscal-note status scenario linked to an official bill.",
+      "fiscal": {
+        "years": [
+          2027,
+          2028,
+          2029,
+          2030
+        ],
+        "narrative": {
+          "summary": "Mock fiscal assessment for agency planning and workflow review.",
+          "assumptions": "Illustrative staffing and workload assumptions; validate before official submission.",
+          "methodology": "Estimate workload hours and annual agency costs.",
+          "prior": ""
+        },
+        "revenue": [
+          {
+            "fund": "General Fund-State",
+            "values": [
+              -70000,
+              -70000,
+              -70000,
+              -70000
+            ]
+          }
+        ],
+        "revenueDueAt": "2026-10-05T18:00:00Z",
+        "expenditure": [
+          {
+            "id": "sec-1",
+            "name": "Agency administration",
+            "assigneeId": "S20",
+            "dueAt": "2026-10-05T20:00:00Z",
+            "status": "Complete",
+            "hours": [
+              120,
+              80,
+              80,
+              80
+            ],
+            "salary": 80000,
+            "goods": 0,
+            "equipment": 0
+          }
+        ],
+        "workPapers": [],
+        "prior": {
+          "productId": "",
+          "billLabel": "",
+          "narrative": "",
+          "revenue": [],
+          "totalFte": 0
+        }
+      }
+    }
+  ]
+}
