@@ -10,3 +10,10 @@ Thumbs.db
 .idea/
 *.tsbuildinfo
 coverage/
+.tools/
+update_ui.py
+finish_ui.py
+fix_checks.py
+polish.py
+playwright-report/
+test-results/

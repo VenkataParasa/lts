@@ -1,7 +1,8 @@
+import { getBill } from '../retrieval'
 import { useMemo, useState } from 'react'
-import { useStore, useMe } from '../store'
+import { useStore, useMe, useVisibleItems } from '../store'
 import { A, Avatar, Button, Card, Chip, ClockChip, DataTable, EmptyState, Field, Icon, LinkButton, PageHeader, Select, StageChip, Stepper, Tabs, inputCls, Skeleton, useLoading } from '../components/ui'
-import { billLabel, fmtDateTime, money, relTime } from '../lib'
+import { billLabel, fmtDateTime, money, relTime, download } from '../lib'
 import { calcSection } from './Fiscal'
 import type { WorkItem, Seed } from '../types'
 
@@ -9,8 +10,8 @@ const stripHtml = (h: string) => h.replace(/<\/(h3|p|li)>/g, '\n').replace(/<[^>
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 export function renderTemplate(body: string, item: WorkItem, data: Seed, xml = false): string {
-  const bill = data.bills.find(b => b.id === item.billId)!
-  const cv = bill.versions.find(v => v.id === bill.currentVersionId)!
+  const bill = getBill(data, item.billId)!
+  const cv = bill.versions.find(v => v.id === (item.billVersionId ?? bill.currentVersionId))!
   const total = item.fiscal ? item.fiscal.revenue.reduce((s, r) => s + r.values.reduce((a, b) => a + b, 0), 0) : 0
   const exp = item.fiscal ? item.fiscal.expenditure.reduce((s, sec) => s + calcSection(sec, data.costRules).reduce((a, x) => a + x.total, 0), 0) : 0
   const last = item.history[item.history.length - 1]
@@ -28,7 +29,7 @@ export default function Review({ id }: { id: string }) {
   const loading = useLoading(300)
   const { data, role, userId, approve, returnForRework, submitForReview, addComment, deliver, now, toast } = useStore()
   const me = useMe()
-  const item = data.items.find(i => i.id === id)
+  const item = useVisibleItems().find(i => i.id === id)
   const [text, setText] = useState('')
   const [sec, setSec] = useState('General')
   const [busy, setBusy] = useState(false)
@@ -37,7 +38,7 @@ export default function Review({ id }: { id: string }) {
   if (!item) return <EmptyState title="Item not found" text="Pick a work product from the queue." action={<LinkButton to="/queue">Go to my queue</LinkButton>} />
   if (loading) return <Skeleton rows={9} />
   const staff = (sid?: string) => data.staff.find(s => s.id === sid)
-  const bill = data.bills.find(b => b.id === item.billId)!
+  const bill = getBill(data, item.billId)!
   const openTo = item.type === 'FN' ? `/fiscal/${item.id}` : item.type === 'BA' ? `/analyses/${item.id}` : `/estimates/${item.id}`
 
   const chain = item.execChain
@@ -63,7 +64,7 @@ export default function Review({ id }: { id: string }) {
   }
   const canAct = (reviewTurn || execTurn) && !why
   const canSubmit = ['Assigned', 'In progress', 'Rework'].includes(item.stage) && (isPreparer || ['Manager', 'Assigner', 'Administrator'].includes(role))
-  const canDeliver = ['Manager', 'Assigner', 'Administrator', 'Budget Office', 'Analyst', 'Leadership'].includes(role)
+  const canDeliver = ['Manager', 'Assigner', 'Administrator', 'Budget Office'].includes(role)
 
   const target = item.type === 'FN' ? 'OFM FNS' : item.type === 'FE' ? 'OFM BEARS' : item.type === 'BA' ? 'SharePoint' : 'Email'
   const actionLabel = item.type === 'FN' ? 'Transmit to OFM FNS' : item.type === 'FE' ? 'Transmit to OFM BEARS' : item.type === 'BA' ? 'Publish to SharePoint' : 'Send to requester by email'
@@ -149,14 +150,14 @@ export default function Review({ id }: { id: string }) {
             <p className="mt-1 text-sm text-muted">Generated from template "{t.name}". Edit templates in Admin.</p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <Button icon="send" disabled={!stageDone.gate || item.locked || busy} className="min-h-[48px] sm:min-h-[40px]" onClick={async () => { setBusy(true); await deliver(item.id); setBusy(false) }}>{busy ? 'Sending...' : actionLabel}</Button>
-              <Button variant="secondary" icon="download" onClick={() => toast(`Downloaded ${item.id}.${pv === 'Word' ? 'docx' : pv === 'PDF' ? 'pdf' : 'xml'} (simulated)`, 'info')}>Download {pv}</Button>
+              <Button variant="secondary" icon="download" onClick={() => download(`${item.id}.${pv === 'OFM XML' ? 'xml' : 'txt'}`, rendered, pv === 'OFM XML' ? 'application/xml' : 'text/plain')}>Download {pv === 'OFM XML' ? 'XML' : 'preview text'}</Button>
               <span className="text-sm text-muted">Target: {target} (simulated)</span>
             </div>
           </>
         )}
         {item.history.length > 0 && (
           <div className="mt-5"><h3 className="mb-1 font-semibold text-navy">Delivery history</h3>
-            <DataTable caption="Delivery history" rows={item.history} rowKey={h => h.id} cols={[{ key: 'v', header: 'Version', render: h => h.version }, { key: 'a', header: 'Sent', render: h => <span className="tnum">{fmtDateTime(h.at)}</span> }, { key: 'c', header: 'Channel', render: h => h.channel }, { key: 'r', header: 'Receipt ID', render: h => <span className="tnum font-semibold">{h.receipt}</span> }, { key: 'b', header: 'By', render: h => staff(h.by)?.name }]} />
+            <DataTable caption="Delivery history" rows={item.history} rowKey={h => h.id} cols={[{ key: 'v', header: 'Version', render: h => h.version }, { key: 'a', header: 'Sent', render: h => <span className="tnum">{fmtDateTime(h.at)}</span> }, { key: 'c', header: 'Channel', render: h => h.channel }, { key: 'r', header: 'Receipt ID', render: h => <span className="tnum font-semibold">{h.receipt}</span> }, { key: 'b', header: 'By', render: h => staff(h.by)?.name }, { key: 'payload', header: 'Integration payload', render: h => h.payload ? <details><summary>View Payload — Simulated integration</summary><pre className="max-w-lg whitespace-pre-wrap">{h.payload}</pre><p>{h.demoResponse}</p></details> : 'Legacy simulated receipt' }]} />
           </div>
         )}
       </Card>

@@ -1,3 +1,4 @@
+import { getVersion } from './retrieval'
 import type { Bill, ItemType, Role, Seed, Staff, WorkItem } from './types'
 
 export const H = 3600_000
@@ -51,7 +52,7 @@ export function clockOf(item: WorkItem, now: number): { state: ClockState; pct: 
   return { state: 'ok', pct, remaining }
 }
 
-export const currentVersion = (b: Bill) => b.versions.find(v => v.id === b.currentVersionId) ?? b.versions[0]
+export const currentVersion = (b: Bill) => getVersion(b, b.currentVersionId) ?? b.versions[0]
 export const billLabel = (b: Bill) => (b.number ? currentVersion(b).label : 'Agency request (no number yet)')
 export const billShort = (b: Bill) => (b.number ? b.number : 'Draft')
 
@@ -85,7 +86,7 @@ export const canNav = (role: Role, k: NavKey) => NAV_ACCESS[k].includes(role)
 const CONF_ROLES: Role[] = ['Manager', 'Leadership', 'Administrator', 'Assigner', 'Executive Reviewer', 'Reviewer']
 
 export function canSeeItem(item: WorkItem, role: Role, user: Staff): boolean {
-  if (role === 'Read-only') return item.stage === 'Delivered' && !item.confidential
+  if (role === 'Read-only') return !item.confidential && (item.stage === 'Delivered' || item.type === 'BA' && !!item.revisions?.length)
   if (role === 'Expenditure Contributor') {
     return item.type === 'FN' && !!item.fiscal && (item.fiscal.expenditure.some(s => s.assigneeId === user.id) || item.fiscal.revenueAssigneeId === user.id)
   }
@@ -95,7 +96,11 @@ export function canSeeItem(item: WorkItem, role: Role, user: Staff): boolean {
 }
 
 export function visibleItems(seed: Seed, role: Role, user: Staff): WorkItem[] {
-  return seed.items.filter(i => canSeeItem(i, role, user))
+  return seed.items.filter(i => canSeeItem(i, role, user)).map(i => {
+    if (role !== 'Read-only' || i.type !== 'BA') return i
+    const r = i.revisions?.at(-1)
+    return r ? { ...i, body: r.body, topics: r.topics, issueNotes: '', correspondence: [], comments: [], changesPending: false, stage: 'Delivered', locked: true } : { ...i, issueNotes: '', correspondence: [], comments: [], locked: true }
+  })
 }
 
 export function visibleBills(seed: Seed, role: Role): Bill[] {

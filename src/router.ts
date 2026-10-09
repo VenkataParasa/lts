@@ -11,7 +11,10 @@ function parse(): Route {
 export function useRoute(): Route {
   const [r, setR] = useState(parse)
   useEffect(() => {
-    const on = () => { setR(parse()); window.scrollTo(0, 0) }
+    const on = () => {
+      setR(parse())
+      window.scrollTo(0, 0)
+    }
     window.addEventListener('hashchange', on)
     return () => window.removeEventListener('hashchange', on)
   }, [])

@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node tests/run.mjs",
+    "test:e2e": "playwright test"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +20,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/diff": "^7.0.2",
     "@types/react": "^19.3.0",

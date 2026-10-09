@@ -4,8 +4,10 @@ import { useStore } from '../store'
 import { A, Button, Card, Chip, DataTable, EmptyState, Field, PageHeader, Select, Tabs, inputCls } from '../components/ui'
 import { billLabel, clockOf, csv, download, fiscalTotal, fmtDateTime, ms, money, nextHearing, H } from '../lib'
 import { useRoute, go } from '../router'
+import OperationalReports from './OperationalReports'
 
 const REPORTS = [
+  { id: 'operational', label: 'Operational reports' },
   { id: 'workload', label: 'Workload by person and division' },
   { id: 'outstanding', label: 'Outstanding fiscal tasks' },
   { id: 'hearings', label: 'Hearing schedule' },
@@ -22,8 +24,7 @@ export default function Reports() {
   const exportBtns = (name: string, rows: (string | number)[][]) => (
     <>
       <Button variant="secondary" icon="download" onClick={() => { download(`${name}.csv`, csv(rows)); toast(`Downloaded ${name}.csv`) }}>CSV</Button>
-      <Button variant="secondary" icon="download" onClick={() => toast(`Downloaded ${name}.xlsx (simulated)`, 'info')}>Excel</Button>
-      <Button variant="secondary" icon="download" onClick={() => toast(`Downloaded ${name}.pdf (simulated)`, 'info')}>PDF</Button>
+
     </>
   )
 
@@ -44,30 +45,25 @@ export default function Reports() {
     const active = data.items.filter(i => i.type === t && i.stage !== 'Delivered').length
     return { type: t === 'BA' ? 'Bill description (48h)' : 'Fiscal note (72h)', 'Delivered on time': done.length, Overdue: late.length, Active: active - late.length }
   }), [data, now])
-  const budget = data.bills.filter(b => b.inBudget && b.session === '2027').map(b => ({ b, fn: data.items.find(i => i.billId === b.id && i.type === 'FN') }))
+  const budget = data.bills.filter(b => b.inBudget && b.session === data.sessions.find(s => s.current)?.id).map(b => ({ b, fn: data.items.find(i => i.billId === b.id && i.type === 'FN') }))
 
   // query builder
   const qid = route.q.get('q')
   const saved = data.savedQueries.find(q => q.id === qid)
   const [taxType, setTax] = useState(saved?.taxType ?? 'All')
   const [minAmt, setMin] = useState(String(saved?.minAmount ?? 1_000_000))
-  const [sessions, setSessions] = useState<string[]>(saved?.sessions ?? ['2027'])
+  const [sessions, setSessions] = useState<string[]>(saved?.sessions ?? data.sessions.filter(s => s.current).map(s => s.id))
   const [name, setName] = useState('')
   const loadQ = (id: string) => { const q = data.savedQueries.find(x => x.id === id); if (q) { setTax(q.taxType); setMin(String(q.minAmount)); setSessions(q.sessions); toast(`Loaded query: ${q.name}`, 'info') } }
   const results = data.items.filter(i => i.type === 'FN' && i.fiscal).map(i => ({ i, b: data.bills.find(b => b.id === i.billId)!, amt: Math.abs(fiscalTotal(i)) }))
     .filter(x => sessions.includes(x.b.session) && (taxType === 'All' || x.b.taxType === taxType) && x.amt >= Number(minAmt.replace(/\D/g, '') || 0))
-  // include prior-session fiscal notes derived from the prior product on current notes so cross-session queries have results
-  const priorRows = data.items.filter(i => i.type === 'FN' && i.fiscal).map(i => {
-    const p = i.fiscal!.prior, b = data.bills.find(x => x.id === i.billId)!
-    const pb = data.bills.find(x => x.id === b.priorBillId) ?? data.bills.find(x => x.session !== '2027' && x.taxType === b.taxType)
-    return { id: p.productId, label: p.billLabel, session: pb?.session ?? '2025', tax: b.taxType, amt: Math.abs(p.revenue.reduce((s, r) => s + r.values.reduce((a, c) => a + c, 0), 0)) }
-  }).filter(r => sessions.includes(r.session) && r.session !== '2027' && (taxType === 'All' || r.tax === taxType) && r.amt >= Number(minAmt.replace(/\D/g, '') || 0))
-  const qRows = [['ID', 'Bill', 'Session', 'Tax type', 'Four-year revenue impact'], ...results.map(x => [x.i.id, billLabel(x.b), x.b.session, x.b.taxType, x.amt]), ...priorRows.map(r => [r.id, r.label, r.session, r.tax, r.amt])]
+  const qRows = [['ID', 'Bill', 'Session', 'Tax type', 'Four-year revenue impact'], ...results.map(x => [x.i.id, billLabel(x.b), x.b.session, x.b.taxType, x.amt])]
 
   return (
     <>
-      <PageHeader title="Reports" subtitle="Prebuilt reports and a query builder. Exports are simulated except CSV." />
+      <PageHeader title="Reports" subtitle="Prebuilt reports and a query builder with downloadable CSV exports." />
       <Tabs label="Reports" value={tab} onChange={t => go(`/reports?tab=${t}`)} tabs={REPORTS.map(r => ({ id: r.id, label: r.label }))} />
+      {tab === 'operational' && <OperationalReports />}
 
       {tab === 'workload' && (
         <div className="grid gap-4 lg:grid-cols-2">

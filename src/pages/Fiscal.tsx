@@ -1,7 +1,8 @@
+import { getBill } from '../retrieval'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useStore, useMe, useVisibleItems } from '../store'
 import { A, Avatar, Button, Card, Chip, ClockChip, DataTable, EmptyState, Field, LinkButton, Modal, PageHeader, Presence, Select, StageChip, Tabs, inputCls, Skeleton, useLoading, openItem, Icon } from '../components/ui'
-import { billLabel, canAssign, fiscalTotal, fmtDateTime, iso, ms, money, num, relTime } from '../lib'
+import { billLabel, canAssign, fiscalTotal, fmtDateTime, iso, ms, money, num, relTime, download } from '../lib'
 import { go } from '../router'
 import type { ExpSection, FiscalData, WorkItem } from '../types'
 
@@ -20,13 +21,16 @@ export function SavedIndicator({ savedAt, saving }: { savedAt: string; saving: b
 export function useDebouncedSave<T>(commit: (v: T) => void, delay = 600) {
   const [saving, setSaving] = useState(false)
   const t = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pending = useRef<{ value: T; commit: (v: T) => void } | null>(null)
+  const flush = () => { if (t.current) clearTimeout(t.current); const p = pending.current; pending.current = null; if (p) p.commit(p.value); setSaving(false) }
   const run = (v: T) => {
     setSaving(true)
+    pending.current = { value: v, commit }
     if (t.current) clearTimeout(t.current)
-    t.current = setTimeout(() => { commit(v); setSaving(false) }, delay)
+    t.current = setTimeout(flush, delay)
   }
-  useEffect(() => () => { if (t.current) clearTimeout(t.current) }, [])
-  return { saving, run }
+  useEffect(() => () => { if (t.current) clearTimeout(t.current); const p = pending.current; pending.current = null; if (p) p.commit(p.value) }, [])
+  return { saving, run, flush }
 }
 
 export const canEditItem = (item: WorkItem, role: string, userId: string) =>
@@ -35,7 +39,7 @@ export const canEditItem = (item: WorkItem, role: string, userId: string) =>
 // ---------- new fiscal note ----------
 function NewFiscal({ onClose }: { onClose: () => void }) {
   const { data, createItem, role } = useStore()
-  const bills = data.bills.filter(b => b.session === '2027')
+  const bills = data.bills.filter(b => b.session === data.sessions.find(s => s.current)?.id)
   const [bill, setBill] = useState(bills[0].id)
   return (
     <Modal title="New fiscal note" onClose={onClose}>
@@ -70,7 +74,7 @@ export function FiscalList() {
         <DataTable caption="Fiscal notes" rows={rows} rowKey={i => i.id} onRow={i => go(`/fiscal/${i.id}`)}
           cols={[
             { key: 'id', header: 'ID', sort: i => i.id, render: i => <span className="flex items-center gap-2"><A to={`/fiscal/${i.id}`} className="font-semibold">{i.id}</A><Presence itemId={i.id} />{i.confidential && <Chip icon="lock">Confidential</Chip>}</span> },
-            { key: 'b', header: 'Bill', render: i => { const b = data.bills.find(x => x.id === i.billId)!; return billLabel(b) } },
+            { key: 'b', header: 'Bill', render: i => { const b = getBill(data, i.billId)!; return billLabel(b) } },
             { key: 'p', header: 'Preparer', render: i => data.staff.find(s => s.id === i.preparerId)?.name, className: 'hidden md:table-cell' },
             { key: 'r', header: 'Revenue, 4 years', sort: i => fiscalTotal(i), render: i => <span className="tnum">{money(fiscalTotal(i))}</span>, className: 'hidden lg:table-cell text-right' },
             { key: 's', header: 'Status', render: i => <StageChip item={i} /> },
@@ -83,16 +87,8 @@ export function FiscalList() {
 }
 
 // ---------- cost calculation ----------
-export function calcSection(s: ExpSection, rules: { hoursPerFte: number; benefitsRate: number; goodsPerFte: number; equipmentPerFte: number }) {
-  return s.hours.map((h, yi) => {
-    const fte = h / rules.hoursPerFte
-    const salaries = fte * s.salary
-    const benefits = salaries * (s.benefitsOverride ?? rules.benefitsRate)
-    const goods = fte * rules.goodsPerFte + (yi === 0 ? s.goods : 0)
-    const equipment = fte * rules.equipmentPerFte + (yi === 0 ? s.equipment : 0)
-    return { fte, salaries, benefits, goods, equipment, total: salaries + benefits + goods + equipment }
-  })
-}
+export { calcSection } from '../fiscalCalculations'
+import { calcSection } from '../fiscalCalculations'
 
 const parseNum = (v: string) => { const n = Number(v.replace(/[^0-9.-]/g, '')); return Number.isFinite(n) ? n : 0 }
 
@@ -107,8 +103,8 @@ export function FiscalWorkspace({ id, tab }: { id: string; tab: string }) {
   const loading = useLoading(300)
   const { data, role, userId, saveItem, updateItem, submitForReview, audit, toast, routeFiscal, external } = useStore()
   const me = useMe()
-  const item = data.items.find(i => i.id === id)
-  const bill = item && data.bills.find(b => b.id === item.billId)
+  const item = useVisibleItems().find(i => i.id === id)
+  const bill = item && getBill(data, item.billId)
   const fiscal = item?.fiscal
   const [saving, setSaving] = useState(false)
 
@@ -167,10 +163,12 @@ export function FiscalWorkspace({ id, tab }: { id: string; tab: string }) {
             setFiscal(f => ({ ...f, workPapers: [...f.workPapers, { id: `wp${Date.now()}`, name, size: '96 KB', by: me.id }] }), `Attached ${name}`)
             await external('SharePoint', `Attached ${name}`)
           }}>Attach from SharePoint</Button>}>
+            {editable && <Field label="Upload local supporting document (maximum 2 MB)" htmlFor="paper-upload"><input id="paper-upload" type="file" accept=".pdf,.docx,.xlsx,.csv,.txt" onChange={e => { const file = e.target.files?.[0]; if (!file) return; if (file.size > 2 * 1024 * 1024 || !/\.(pdf|docx|xlsx|csv|txt)$/i.test(file.name)) { toast('Choose a supported document up to 2 MB.', 'error'); return }; const reader = new FileReader(); reader.onload = () => setFiscal(f => ({ ...f, workPapers: [...f.workPapers, { id: crypto.randomUUID(), name: file.name, size: `${Math.ceil(file.size / 1024)} KB`, by: me.id, at: new Date().toISOString(), mime: file.type, content: String(reader.result) }] }), `Document uploaded: ${file.name}`); reader.readAsDataURL(file) }} /></Field>}
             {fiscal.workPapers.length === 0 ? <EmptyState title="No work papers yet" text="Attach files stored in SharePoint." /> : (
               <ul className="divide-y divide-line">
                 {fiscal.workPapers.map(w => (
                   <li key={w.id} className="flex items-center gap-3 py-2"><Icon name="file" className="text-muted" /><span className="flex-1">{w.name}<span className="block text-sm text-muted">{w.size}, added by {data.staff.find(s => s.id === w.by)?.name}</span></span>
+                    {w.content && <Button variant="ghost" onClick={() => { const a = document.createElement('a'); a.href = w.content!; a.download = w.name; a.click() }}>Download</Button>}
                     {editable && <Button variant="ghost" onClick={() => setFiscal(f => ({ ...f, workPapers: f.workPapers.filter(x => x.id !== w.id) }), `Removed ${w.name}`)}>Remove</Button>}</li>
                 ))}
               </ul>
@@ -366,6 +364,7 @@ function Assign({ item, onRoute }: { item: WorkItem; onRoute: (rev: string, secs
 function Prior({ item, editable, setFiscal }: { item: WorkItem; editable: boolean; setFiscal: (fn: (f: FiscalData) => FiscalData, d?: string) => void }) {
   const { toast, audit } = useStore()
   const f = item.fiscal!, p = f.prior
+  if (!p.productId) return <Card><EmptyState title="No prior fiscal product supplied" text="The official dataset includes legislative records, but no prior agency fiscal estimates. A comparison becomes available when a prior product is supplied." /></Card>
   const curTotals = f.revenue.map(r => r.values.reduce((a, b) => a + b, 0))
   const priTotals = p.revenue.map(r => r.values.reduce((a, b) => a + b, 0))
   const curFte = f.expenditure.length

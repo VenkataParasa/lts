@@ -17,12 +17,13 @@ export default function Compare() {
   const route = useRoute()
   const { data, role, toast, patchData, createItem, audit } = useStore()
   const me = useMe()
-  const bills = visibleBills(data, role).filter(b => b.session === '2027' || data.bills.some(x => x.priorBillId === b.id))
-  const billId = route.q.get('bill') || data.items.find(i => i.id === 'BA-27-002')?.billId || bills.find(b => b.session === '2027' && b.versions.length > 2)?.id || bills[0].id
+  const bills = visibleBills(data, role)
+  const billId = route.q.get('bill') || data.items.find(i => i.type === 'BA')?.billId || bills.find(b => b.session === data.sessions.find(s => s.current)?.id && b.versions.length > 2)?.id || bills[0].id
   const bill = data.bills.find(b => b.id === billId) ?? bills[0]
   const pool = useMemo(() => priorChain(bill, data.bills).flatMap(b => b.versions.map(v => ({ ...v, bill: b }))), [bill, data.bills])
   const [aId, setA] = useState('')
   const [bId, setB] = useState('')
+  const [compareAnalyses, setCompareAnalyses] = useState(false)
   const [mode, setMode] = useState<'side' | 'inline'>('side')
   useEffect(() => {
     const first = bill.versions[0], cur = currentVersion(bill)
@@ -30,7 +31,9 @@ export default function Compare() {
   }, [bill.id, bill])
   const a = pool.find(v => v.id === aId) ?? pool[0]
   const b = pool.find(v => v.id === bId) ?? pool[pool.length - 1]
-  const parts = useMemo(() => diffWords(a.text, b.text), [a, b])
+  const leftText = compareAnalyses ? (data.items.find(i => i.type === 'BA' && i.billVersionId === a.id)?.body ?? 'No analysis for this version').replace(/<[^>]*>/g, ' ') : a.text
+  const rightText = compareAnalyses ? (data.items.find(i => i.type === 'BA' && i.billVersionId === b.id)?.body ?? 'No analysis for this version').replace(/<[^>]*>/g, ' ') : b.text
+  const parts = useMemo(() => diffWords(leftText, rightText), [leftText, rightText])
   const stats = { add: parts.filter(p => p.added).length, del: parts.filter(p => p.removed).length }
 
   const l = useRef<HTMLDivElement>(null), r = useRef<HTMLDivElement>(null), lock = useRef(false)
@@ -45,9 +48,9 @@ export default function Compare() {
   const opts = pool.map(v => ({ value: v.id, label: label(v) }))
 
   const draft = () => {
-    const existing = data.items.find(i => i.type === 'BA' && i.billId === bill.id)
+    const existing = data.items.find(i => i.type === 'BA' && i.billId === b.bill.id && i.billVersionId === b.id)
     if (existing) { go(`/analyses/${existing.id}`); return }
-    const it = createItem('BA', bill.id, { stage: 'In progress' })
+    const it = createItem('BA', b.bill.id, { stage: 'In progress', billVersionId: b.id })
     go(`/analyses/${it.id}`)
   }
   const markAnalyzed = () => {
@@ -59,8 +62,8 @@ export default function Compare() {
   return (
     <>
       <PageHeader title="Compare versions" subtitle="Pick any two versions or amendments, including those from a prior session." crumbs={[{ label: 'Bills', to: '/bills' }, { label: billLabel(bill), to: `/bills/${bill.id}` }, { label: 'Compare' }]}
-        actions={<><Button variant="secondary" icon="edit" onClick={draft}>Draft the analysis</Button>{b.kind === 'amendment' && !b.analyzed && <Button variant="secondary" icon="check" onClick={markAnalyzed}>Mark amendment analyzed</Button>}</>} />
-      <Card className="mb-4">
+        actions={<><Button disabled={!['Analyst', 'Assigner', 'Manager', 'Administrator'].includes(role)} variant="secondary" icon="edit" onClick={draft}>Draft the analysis</Button>{b.kind === 'amendment' && !b.analyzed && <Button disabled={!['Analyst', 'Assigner', 'Manager', 'Administrator'].includes(role)} variant="secondary" icon="check" onClick={markAnalyzed}>Mark amendment analyzed</Button>}</>} />
+      <Card className="mb-4"><label className="flex gap-2 min-h-10 items-center"><input type="checkbox" checked={compareAnalyses} onChange={e => setCompareAnalyses(e.target.checked)} />Compare DOR analyses</label><Button disabled={!['Analyst', 'Assigner', 'Manager', 'Administrator'].includes(role)} variant="secondary" onClick={() => { const prior = data.items.find(i => i.type === 'BA' && i.billVersionId === a.id); if (!prior) { toast('No prior analysis to copy.', 'error'); return }; const it = createItem('BA', b.bill.id, { billVersionId: b.id, stage: 'In progress', body: prior.body, topics: [...(prior.topics ?? [])], hasIssues: prior.hasIssues, issueNotes: prior.issueNotes, provenance: `Started from ${a.label} Analysis ${prior.id} Revision ${prior.publishedVersion ?? prior.version}` }); go(`/analyses/${it.id}`) }}>Copy prior analysis as starting point</Button>
         <div className="grid gap-3 md:grid-cols-3">
           <Field label="Bill" htmlFor="cb"><Select id="cb" value={bill.id} onChange={v => go(`/compare?bill=${v}`)} options={bills.map(x => ({ value: x.id, label: `${billLabel(x)} (${x.session})` }))} /></Field>
           <Field label="Compare from (older)" htmlFor="ca"><Select id="ca" value={a.id} onChange={setA} options={opts} /></Field>

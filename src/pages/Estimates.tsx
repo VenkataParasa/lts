@@ -1,3 +1,4 @@
+import { getBill } from '../retrieval'
 import { useEffect, useState } from 'react'
 import { useStore, useVisibleItems } from '../store'
 import { A, Button, Card, Chip, ClockChip, DataTable, EmptyState, Field, LinkButton, Modal, PageHeader, Presence, Select, StageChip, Tabs, inputCls, Skeleton, useLoading, openItem } from '../components/ui'
@@ -13,7 +14,7 @@ export function Estimates() {
   const { data, role, createItem } = useStore()
   const all = useVisibleItems().filter(i => i.type === 'FE' || i.type === 'DR')
   const [nw, setNw] = useState(false)
-  const [bill, setBill] = useState(data.bills.find(b => b.session === '2027')!.id)
+  const [bill, setBill] = useState((data.bills.find(b => b.session === data.sessions.find(s => s.current)?.id) ?? data.bills[0])?.id ?? '')
   const [type, setType] = useState<ItemType>('DR')
   const rows = all.filter(i => i.type === tab)
   if (loading) return <><PageHeader title="Estimates & Data Requests" /><Skeleton rows={7} /></>
@@ -26,7 +27,7 @@ export function Estimates() {
         <DataTable caption={tab === 'FE' ? 'Fiscal estimates' : 'Data requests'} rows={rows} rowKey={i => i.id} onRow={i => go(`/estimates/${i.id}`)}
           cols={[
             { key: 'id', header: 'ID', sort: i => i.id, render: i => <span className="flex items-center gap-2"><A to={`/estimates/${i.id}`} className="font-semibold">{i.id}</A><Presence itemId={i.id} />{i.confidential && <Chip icon="lock">Confidential</Chip>}</span> },
-            { key: 'b', header: 'Bill', render: i => billLabel(data.bills.find(b => b.id === i.billId)!) },
+            { key: 'b', header: 'Bill', render: i => billLabel(getBill(data, i.billId)!) },
             tab === 'FE' ? { key: 'r', header: 'Revenue, 4 years', render: i => <span className="tnum">{money(fiscalTotal(i))}</span>, className: 'hidden md:table-cell text-right' } : { key: 'rq', header: 'Requester', render: i => i.requester, className: 'hidden md:table-cell' },
             { key: 's', header: 'Status', render: i => <StageChip item={i} /> },
             { key: 'c', header: 'Deadline', sort: i => ms(i.dueAt), render: i => <ClockChip item={i} /> },
@@ -36,7 +37,7 @@ export function Estimates() {
         <Modal title="New estimate or request" onClose={() => setNw(false)}>
           <div className="space-y-3">
             <Field label="Type" htmlFor="et"><Select id="et" value={type} onChange={v => setType(v as ItemType)} options={[{ value: 'DR', label: 'Data request' }, { value: 'FE', label: 'Fiscal estimate' }]} /></Field>
-            <Field label="Bill" htmlFor="eb"><Select id="eb" value={bill} onChange={setBill} options={data.bills.filter(b => b.session === '2027').map(b => ({ value: b.id, label: `${billLabel(b)}: ${b.title.slice(0, 55)}` }))} /></Field>
+            <Field label="Bill" htmlFor="eb"><Select id="eb" value={bill} onChange={setBill} options={data.bills.filter(b => b.session === data.sessions.find(s => s.current)?.id).map(b => ({ value: b.id, label: `${billLabel(b)}: ${b.title.slice(0, 55)}` }))} /></Field>
             <div className="flex gap-2"><Button onClick={() => { const it = createItem(type, bill, canAssign(role) ? {} : { stage: 'In progress' }); setNw(false); go(`/estimates/${it.id}`) }}>Create</Button><Button variant="secondary" onClick={() => setNw(false)}>Cancel</Button></div>
           </div>
         </Modal>
@@ -48,7 +49,7 @@ export function Estimates() {
 export function EstimateDetail({ id }: { id: string }) {
   const route = useRoute()
   const { data, role, userId, saveItem, submitForReview, audit } = useStore()
-  const item = data.items.find(i => i.id === id)
+  const item = useVisibleItems().find(i => i.id === id)
   const loading = useLoading(250)
   const [text, setText] = useState('')
   useEffect(() => { if (item?.confidential) audit('Viewed confidential item', item.id, 'Opened data request', true) }, [id]) // eslint-disable-line
@@ -57,7 +58,7 @@ export function EstimateDetail({ id }: { id: string }) {
   if (!item) return <EmptyState title="Item not found" action={<LinkButton to="/estimates">Back to list</LinkButton>} />
   if (item.type === 'FE') return <FiscalWorkspace id={id} tab={route.q.get('tab') ?? 'narrative'} />
   if (loading) return <Skeleton rows={6} />
-  const bill = data.bills.find(b => b.id === item.billId)!
+  const bill = getBill(data, item.billId)!
   const editable = canEditItem(item, role, userId)
   return (
     <>

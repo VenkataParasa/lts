@@ -99,7 +99,9 @@ const STAGE_META: Record<Stage, [Tone, string]> = {
   Assigned: ['neutral', 'inbox'], 'In progress': ['info', 'edit'], 'In review': ['info', 'eye'], Rework: ['warn', 'undo'],
   'Executive review': ['info', 'shield'], Approved: ['ok', 'check'], Delivered: ['ok', 'send'],
 }
-export function StageChip({ item }: { item: Pick<WorkItem, 'stage' | 'onHold'> }) {
+export function StageChip({ item }: { item: Pick<WorkItem, 'stage' | 'onHold'> & Partial<Pick<WorkItem, 'type' | 'publishedVersion' | 'changesPending'>> }) {
+  if (item.changesPending) return <Chip tone="warn" icon="edit">Published — Changes Pending</Chip>
+  if (item.type === 'BA' && item.publishedVersion && item.stage === 'Delivered') return <Chip tone="ok" icon="check">Published</Chip>
   if (item.onHold) return <Chip tone="warn" icon="pause">On hold</Chip>
   const [t, i] = STAGE_META[item.stage]
   return <Chip tone={t} icon={i}>{item.stage}</Chip>
@@ -241,7 +243,16 @@ export function Modal({ title, onClose, children, wide }: { title: string; onClo
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null
     ref.current?.focus()
-    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') closeRef.current() }
+      const k = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') closeRef.current()
+        if (e.key === 'Tab') {
+          const nodes = [...(ref.current?.querySelectorAll<HTMLElement>('button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]') ?? [])].filter(el => el.getClientRects().length)
+          const first = nodes[0], last = nodes.at(-1)
+          if (!first) { e.preventDefault(); return }
+          if (e.shiftKey && (document.activeElement === first || document.activeElement === ref.current)) { e.preventDefault(); last?.focus() }
+          else if (!e.shiftKey && (document.activeElement === last || document.activeElement === ref.current)) { e.preventDefault(); first.focus() }
+        }
+      }
     window.addEventListener('keydown', k)
     return () => { window.removeEventListener('keydown', k); prev?.focus() }
   }, [])
@@ -282,17 +293,22 @@ export function Toaster() {
 
 // ---------- table ----------
 export interface Col<T> { key: string; header: string; render: (r: T) => ReactNode; className?: string; sort?: (r: T) => string | number }
-export function DataTable<T>({ cols, rows, rowKey, onRow, selectable, selected, onSelect, caption, empty }: {
+export function DataTable<T>({ cols, rows, rowKey, onRow, selectable, selected, onSelect, caption, empty, pageSize }: {
   cols: Col<T>[]; rows: T[]; rowKey: (r: T) => string; onRow?: (r: T) => void; selectable?: boolean
-  selected?: string[]; onSelect?: (ids: string[]) => void; caption: string; empty?: ReactNode
+  selected?: string[]; onSelect?: (ids: string[]) => void; caption: string; empty?: ReactNode; pageSize?: number
 }) {
   const [sortKey, setSortKey] = useState<string>('')
   const [dir, setDir] = useState<1 | -1>(1)
+  const [page, setPage] = useState(0)
+  useEffect(() => setPage(0), [rows, pageSize, sortKey, dir])
   const sorted = (() => {
     const c = cols.find(x => x.key === sortKey)
     if (!c?.sort) return rows
     return [...rows].sort((a, b) => { const x = c.sort!(a), y = c.sort!(b); return (x < y ? -1 : x > y ? 1 : 0) * dir })
   })()
+  const pages = pageSize ? Math.max(1, Math.ceil(sorted.length / pageSize)) : 1
+  const currentPage = Math.min(page, pages - 1)
+  const shown = pageSize ? sorted.slice(currentPage * pageSize, (currentPage + 1) * pageSize) : sorted
   if (!rows.length) return <>{empty ?? <EmptyState title="Nothing to show" text="No records match the current filters." />}</>
   const allIds = rows.map(rowKey)
   return (
@@ -317,7 +333,7 @@ export function DataTable<T>({ cols, rows, rowKey, onRow, selectable, selected, 
           </tr>
         </thead>
         <tbody>
-          {sorted.map(r => {
+          {shown.map(r => {
             const id = rowKey(r)
             const isSel = selected?.includes(id)
             return (
@@ -333,6 +349,7 @@ export function DataTable<T>({ cols, rows, rowKey, onRow, selectable, selected, 
           })}
         </tbody>
       </table>
+      {pageSize && pages > 1 && <nav aria-label={`${caption} pagination`} className="flex items-center justify-between gap-3 border-t border-line p-3"><span role="status">{currentPage * pageSize + 1} to {Math.min((currentPage + 1) * pageSize, rows.length)} of {rows.length}</span><div className="flex gap-2"><Button variant="secondary" disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)}>Previous</Button><Button variant="secondary" disabled={currentPage + 1 >= pages} onClick={() => setPage(currentPage + 1)}>Next</Button></div></nav>}
     </div>
   )
 }

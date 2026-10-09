@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { useStore, useMe, personaFor } from './store'
 import { useRoute, go } from './router'
 import { Icon, Modal, Toaster, Button, Chip } from './components/ui'
@@ -18,29 +18,30 @@ import Reports from './pages/Reports'
 import Implementation from './pages/Implementation'
 import Notifications from './pages/Notifications'
 import Admin from './pages/Admin'
+import Hearings from './pages/Hearings'
+import Search from './pages/Search'
+import { searchWorkspace } from './search'
 
 const NAV: { key: NavKey; label: string; to: string; icon: string }[] = [
   { key: 'dashboard', label: 'Dashboard', to: '/', icon: 'home' },
-  { key: 'queue', label: 'My Queue', to: '/queue', icon: 'list' },
+  { key: 'queue', label: 'My Work', to: '/queue', icon: 'list' },
   { key: 'bills', label: 'Bills', to: '/bills', icon: 'bill' },
+  { key: 'bills', label: 'Hearings', to: '/hearings', icon: 'clock' },
+  { key: 'queue', label: 'Assignments', to: '/queue?tab=Assigned', icon: 'users' },
   { key: 'fiscal', label: 'Fiscal Notes', to: '/fiscal', icon: 'calc' },
   { key: 'estimates', label: 'Estimates & Data Requests', to: '/estimates', icon: 'file' },
   { key: 'packages', label: 'Packages', to: '/packages', icon: 'folder' },
   { key: 'analyses', label: 'Bill Analyses', to: '/analyses', icon: 'edit' },
   { key: 'executive', label: 'Executive Review', to: '/executive', icon: 'shield' },
   { key: 'reports', label: 'Reports', to: '/reports', icon: 'chart' },
+  { key: 'bills', label: 'Search', to: '/search', icon: 'search' },
+  { key: 'bills', label: 'Notifications', to: '/notifications', icon: 'bell' },
   { key: 'implementation', label: 'Implementation', to: '/implementation', icon: 'flag' },
   { key: 'admin', label: 'Admin', to: '/admin', icon: 'settings' },
 ]
 
 function LogoMark() {
-  return (
-    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-      <rect width="34" height="34" rx="6" fill="#fff" />
-      <path d="M17 5l10 5v6c0 6-4 10-10 13C11 26 7 22 7 16v-6z" fill="#005A9C" />
-      <path d="M12 16l4 4 6-8" stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
+  return <img src="./dor-logo.svg" alt="Washington Department of Revenue" width={100} height={40} className="h-10 w-[100px] shrink-0 rounded bg-white p-1 object-contain" />
 }
 
 function useOutside(ref: React.RefObject<HTMLElement | null>, on: () => void) {
@@ -61,9 +62,10 @@ function GlobalSearch() {
   const results = useMemo(() => {
     const t = q.trim().toLowerCase()
     if (t.length < 2) return []
-    const bills = visibleBills(data, role).filter(b => `${b.number ?? ''} ${b.title}`.toLowerCase().includes(t)).slice(0, 5).map(b => ({ label: `${billLabel(b)}: ${b.title}`, to: `/bills/${b.id}`, kind: 'Bill' }))
-    const items = visibleItems(data, role, me).filter(i => `${i.id} ${i.title}`.toLowerCase().includes(t)).slice(0, 5).map(i => ({ label: `${i.id}: ${i.title}`, to: i.type === 'FN' ? `/fiscal/${i.id}` : i.type === 'BA' ? `/analyses/${i.id}` : `/estimates/${i.id}`, kind: 'Work' }))
-    return [...bills, ...items]
+    const bills = visibleBills(data, role).filter(b => `${b.number ?? ''} ${b.title} ${b.status} ${b.sponsors.join(' ')} ${b.topics.join(' ')} ${b.committee}`.toLowerCase().includes(t)).slice(0, 5).map(b => ({ label: `${billLabel(b)}: ${b.title}`, to: `/bills/${b.id}`, kind: 'Bill' }))
+    const items = visibleItems(data, role, me).filter(i => `${i.id} ${i.title} ${i.body ?? ''} ${(i.correspondence ?? []).map(c => c.to + ' ' + c.note).join(' ')}`.toLowerCase().includes(t)).slice(0, 5).map(i => ({ label: `${i.id}: ${i.title}`, to: i.type === 'FN' ? `/fiscal/${i.id}` : i.type === 'BA' ? `/analyses/${i.id}` : `/estimates/${i.id}`, kind: 'Work' }))
+    void bills; void items
+    return searchWorkspace(data, role, me, q).slice(0, 12).map(r => ({ label: r.label, to: r.link, kind: r.kind }))
   }, [q, data, role, me])
   return (
     <div ref={ref} className="relative w-full max-w-xl" role="search">
@@ -112,8 +114,8 @@ function UserMenu({ onHelp }: { onHelp: () => void }) {
           </select>
           <div className="flex flex-col gap-2 border-t border-line pt-3">
             <Button variant="secondary" icon="refresh" onClick={() => { setOpen(false); void simulateLegislature() }}>Simulate legislature update</Button>
-            <Button variant="secondary" icon="star" onClick={() => { setGuide(!guideOpen); setOpen(false) }}>{guideOpen ? 'Hide' : 'Show'} demo guide</Button>
-            <Button variant="secondary" icon="undo" onClick={() => { setOpen(false); reset() }}>Reset demo</Button>
+            <Button variant="secondary" icon="star" onClick={() => { setGuide(!guideOpen); setOpen(false) }}>{guideOpen ? 'Hide' : 'Show'} Guide</Button>
+            <Button variant="secondary" icon="undo" onClick={() => { setOpen(false); reset() }}>Reset workspace</Button>
             <Button variant="ghost" icon="help" onClick={() => { setOpen(false); onHelp() }}>Help</Button>
           </div>
         </div>
@@ -126,13 +128,12 @@ function Header({ onHelp }: { onHelp: () => void }) {
   const { role, setRole, setDrawer, drawerOpen, data } = useStore()
   const unread = data.notifications.filter(n => !n.read && n.toRoles.includes(role)).length
   return (
-    <header className="on-dark sticky top-0 z-30 bg-navy text-white">
+    <header className="on-dark shrink-0 z-30 bg-navy text-white">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 md:px-4">
         <button type="button" aria-label="Open navigation menu" aria-expanded={drawerOpen} onClick={() => setDrawer(!drawerOpen)} className="rounded p-2 hover:bg-white/15 md:hidden"><Icon name="menu" size={24} /></button>
         <a href="#/" className="flex items-center gap-3 text-white no-underline">
           <LogoMark />
           <span className="leading-tight">
-            <span className="hidden text-sm sm:block">Washington Department of Revenue</span>
             <span className="block text-base font-semibold"><span className="sm:hidden">DOR </span>Legislative Tracking System</span>
           </span>
         </a>
@@ -164,7 +165,7 @@ function AlertBanner() {
   const list = in24.length ? in24 : in72
   const first = list[0]
   return (
-    <div role="region" aria-label="Urgent hearings" className="flex items-center gap-3 bg-[#FFF1DE] px-4 py-2 text-[15px] text-[#5E3200]">
+    <div role="region" aria-label="Urgent hearings" className="flex shrink-0 items-center gap-3 bg-[#FFF1DE] px-4 py-2 text-[15px] text-[#5E3200]">
       <Icon name="alert" className="text-warn" />
       <p className="flex-1">
         <strong>{list.length} hearing{list.length > 1 ? 's' : ''} in the next {in24.length ? '24' : '72'} hours.</strong>{' '}
@@ -182,12 +183,12 @@ function SideNav({ path }: { path: string }) {
   const items = NAV.filter(n => canNav(role, n.key))
   const isActive = (to: string) => (to === '/' ? path === '/' : root === to || (to === '/fiscal' && path.startsWith('/review')))
   const body = (collapsed: boolean) => (
-    <nav aria-label="Main" className="on-dark flex h-full flex-col bg-navy text-white">
-      <ul className="flex-1 py-2">
+    <nav aria-label="Main" className="on-dark flex h-full min-h-0 flex-col overflow-hidden bg-navy text-white print:h-auto print:overflow-visible">
+      <ul className="nav-menu min-h-0 flex-1 overflow-y-auto overscroll-contain py-2 md:py-1 print:overflow-visible">
         {items.map(n => (
-          <li key={n.key}>
+          <li key={n.to}>
             <a href={'#' + n.to} onClick={() => setDrawer(false)} aria-current={isActive(n.to) ? 'page' : undefined} title={collapsed ? n.label : undefined}
-              className={`flex min-h-[44px] items-center gap-3 border-l-4 px-4 py-2 text-[15px] text-white no-underline hover:bg-white/10 ${isActive(n.to) ? 'border-gold bg-blue font-semibold' : 'border-transparent'}`}>
+              className={`flex min-h-[44px] items-center gap-3 border-l-4 px-4 py-2 text-[15px] text-white no-underline hover:bg-white/10 md:min-h-9 md:gap-2 md:px-3 md:py-1 md:text-sm md:leading-5 ${isActive(n.to) ? 'border-gold bg-blue font-semibold' : 'border-transparent'}`}>
               <Icon name={n.icon} size={20} />
               {!collapsed && <span>{n.label}</span>}
               {collapsed && <span className="sr-only">{n.label}</span>}
@@ -195,14 +196,14 @@ function SideNav({ path }: { path: string }) {
           </li>
         ))}
       </ul>
-      <button type="button" onClick={() => setNavCollapsed(!navCollapsed)} className="hidden items-center gap-3 border-t border-white/20 px-4 py-3 text-sm hover:bg-white/10 md:flex" aria-label={navCollapsed ? 'Expand navigation' : 'Collapse navigation'}>
+      <button type="button" onClick={() => setNavCollapsed(!navCollapsed)} className="hidden min-h-10 shrink-0 items-center gap-2 border-t border-white/20 px-4 py-2 text-sm hover:bg-white/10 md:flex" aria-label={navCollapsed ? 'Expand navigation' : 'Collapse navigation'}>
         <Icon name={navCollapsed ? 'right' : 'menu'} size={20} />{!collapsed && 'Collapse menu'}
       </button>
     </nav>
   )
   return (
     <>
-      <aside className={`sticky top-[56px] hidden h-[calc(100vh-56px)] shrink-0 self-start md:block ${navCollapsed ? 'w-16' : 'w-60'}`}>{body(navCollapsed)}</aside>
+      <aside className={`hidden shrink-0 self-start bg-navy md:sticky md:top-[var(--app-header-height,0px)] md:block md:h-[calc(100dvh-var(--app-header-height,0px))] print:static print:h-auto ${navCollapsed ? 'w-16' : 'w-60'}`}>{body(navCollapsed)}</aside>
       {drawerOpen && (
         <div className="fixed inset-0 z-40 md:hidden" onClick={() => setDrawer(false)}>
           <div className="absolute inset-0 bg-black/50" />
@@ -236,24 +237,23 @@ function BottomTabs({ path }: { path: string }) {
 function DemoGuide() {
   const { guideOpen, setGuide, setRole, data, simulateLegislature } = useStore()
   const [collapsed, setCollapsed] = useState(true)
-  const billOf = (item: string) => data.items.find(i => i.id === item)?.billId ?? ''
   const scenarios: { title: string; steps: string; run: () => void }[] = [
-    { title: '1. New hearing in under 72 hours', steps: 'Injects a version, amendment and hearing. Tasks are created and work is flagged.', run: () => { setRole('Assigner'); void simulateLegislature(); go('/queue?tab=Assigned') } },
-    { title: '2. Route a fiscal note', steps: 'Assign revenue and expenditure sections, set due dates, then Route.', run: () => { setRole('Assigner'); go('/fiscal/FN-27-001?tab=assign') } },
-    { title: '3. Compare SHB to HB, draft analysis', steps: 'Compare versions with redline, then open the analysis editor.', run: () => { setRole('Analyst'); go(`/compare?bill=${billOf('BA-27-002')}`) } },
-    { title: '4. FTE calculation and prior-year note', steps: 'Edit hours in the calculator. Then use the Prior-year comparison tab.', run: () => { setRole('Analyst'); go('/fiscal/FN-27-002?tab=expenditure') } },
-    { title: '5. Review, return, fix, executive review', steps: 'Reviewer approves or returns. Then switch to Executive Reviewer on a phone-width view.', run: () => { setRole('Reviewer'); go('/review/FN-27-003') } },
-    { title: '6. Transmit to OFM and view audit', steps: 'Preview Word, PDF and XML, transmit, then open Admin > Audit log.', run: () => { setRole('Manager'); go('/review/FN-27-004') } },
-    { title: '7. Manager workload and saved query', steps: 'Workload chart, then the saved fiscal query.', run: () => { setRole('Manager'); go('/reports?tab=query&q=Q1') } },
+    { title: '1. New hearing in under 72 hours', steps: 'Refreshes collector-shaped hearing scenarios. Start Tracking to create work.', run: () => { setRole('Assigner'); void simulateLegislature(); go('/queue?tab=Assigned') } },
+    { title: '2. Route a fiscal note', steps: 'Create a fiscal note, then assign revenue and expenditure sections.', run: () => { setRole('Assigner'); go('/fiscal') } },
+    { title: '3. Compare SHB to HB, draft analysis', steps: 'Compare versions with redline, then open the analysis editor.', run: () => { setRole('Analyst'); go(`/compare?bill=${data.bills[0].id}`) } },
+    { title: '4. FTE calculation and prior products', steps: 'Edit hours in the calculator. The prior-product tab shows when no verified prior estimate is supplied.', run: () => { setRole('Analyst'); go('/fiscal') } },
+    { title: '5. Review, return, fix, executive review', steps: 'Reviewer approves or returns. Then switch to Executive Reviewer on a phone-width view.', run: () => { setRole('Reviewer'); go('/executive') } },
+    { title: '6. Transmit to OFM and view audit', steps: 'Preview Word, PDF and XML, transmit, then open Admin > Audit log.', run: () => { setRole('Manager'); go('/fiscal') } },
+    { title: '7. Manager workload and saved query', steps: 'Workload chart, then the saved fiscal query.', run: () => { setRole('Manager'); go('/reports?tab=query') } },
   ]
   if (!guideOpen) return null
   return (
-    <aside aria-label="Demo guide" className="fixed bottom-16 left-2 z-40 w-[min(92vw,22rem)] rounded-md border border-line bg-white shadow-xl md:bottom-4 md:left-auto md:right-4 md:w-80">
+    <aside aria-label="Workflow guide" className="fixed bottom-16 left-2 z-40 w-[min(92vw,22rem)] rounded-md border border-line bg-white shadow-xl md:bottom-4 md:left-auto md:right-4 md:w-80">
       <div className="flex items-center justify-between rounded-t-md bg-navy px-3 py-2 text-white">
-        <h2 className="text-base font-semibold">Demo guide</h2>
+        <h2 className="text-base font-semibold">Guide</h2>
         <div className="flex gap-1">
           <button type="button" className="rounded px-2 hover:bg-white/15" aria-expanded={!collapsed} onClick={() => setCollapsed(c => !c)}>{collapsed ? 'Expand' : 'Collapse'}</button>
-          <button type="button" className="rounded p-1 hover:bg-white/15" aria-label="Close demo guide" onClick={() => setGuide(false)}><Icon name="x" size={16} /></button>
+          <button type="button" className="rounded p-1 hover:bg-white/15" aria-label="Close workflow guide" onClick={() => setGuide(false)}><Icon name="x" size={16} /></button>
         </div>
       </div>
       {!collapsed && (
@@ -276,8 +276,8 @@ function Footer({ onA11y }: { onA11y: () => void }) {
   return (
     <footer className="on-dark mt-8 bg-navy px-4 py-5 text-sm text-white">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p>Legislative Tracking System demo build 0.9.0. All content is fictional.</p>
-        <p>Support: <a className="text-white underline" href="mailto:lts-support@dor-demo.example">lts-support@dor-demo.example</a> | 360-555-0100</p>
+        <p>Legislative Tracking System. Washington legislative records and agency workflows.</p>
+        <p>For support, contact your system administrator.</p>
         <button type="button" onClick={onA11y} className="text-white underline">Accessibility</button>
       </div>
     </footer>
@@ -293,6 +293,17 @@ export default function App() {
   const { tick, role, data } = useStore()
   const [help, setHelp] = useState(false)
   const [a11y, setA11y] = useState(false)
+  const headerRef = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+    // The alert and responsive header can change height; keep the sidebar below both.
+    const updateHeight = () => header.parentElement?.style.setProperty('--app-header-height', `${header.getBoundingClientRect().height}px`)
+    updateHeight()
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(header)
+    return () => observer.disconnect()
+  }, [])
   useEffect(() => { const t = setInterval(tick, 20_000); return () => clearInterval(t) }, [tick])
   const [a, b] = route.seg
   const guard = (k: NavKey, el: ReactNode) => (canNav(role, k) || k === 'dashboard' ? el : <AccessDenied />)
@@ -301,6 +312,8 @@ export default function App() {
     case undefined: page = <Dashboard />; break
     case 'queue': page = <Queue />; break
     case 'bills': page = b ? <Bill360 id={b} tab={route.q.get('tab') ?? 'Summary'} /> : <BillsList />; break
+    case 'hearings': page = <Hearings />; break;
+    case 'search': page = <Search />; break;
     case 'compare': page = <Compare />; break
     case 'fiscal': page = b ? <FiscalWorkspace id={b} tab={route.q.get('tab') ?? 'narrative'} /> : <FiscalList />; break
     case 'estimates': page = b ? <EstimateDetail id={b} /> : <Estimates />; break
@@ -316,17 +329,22 @@ export default function App() {
   }
   void data
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-dvh flex-col">
       <a className="skip-link" href="#main" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus() }}>Skip to main content</a>
-      <Header onHelp={() => setHelp(true)} />
-      <AlertBanner />
-      <div className="flex flex-1">
+      <div ref={headerRef} className="z-30 shrink-0 md:sticky md:top-0 print:static">
+        <Header onHelp={() => setHelp(true)} />
+        <AlertBanner />
+      </div>
+      <div className="flex min-h-0 flex-1">
         <SideNav path={route.path} />
+        <div data-page-content className="min-w-0 flex-1">
         <main id="main" tabIndex={-1} className="min-w-0 flex-1 px-4 py-5 pb-24 outline-none md:px-6 md:pb-8">
+          <p className="mb-4 rounded border border-line bg-white px-3 py-2 text-sm text-muted">250 official Washington legislative records. Additional simulated hearings exercise 72-hour alerts; My Work includes mock assignments for each persona.</p>
           <Screen key={route.path + (route.q.get('tab') ?? '')}>{page}</Screen>
         </main>
+        <Footer onA11y={() => setA11y(true)} />
+        </div>
       </div>
-      <Footer onA11y={() => setA11y(true)} />
       <BottomTabs path={route.path} />
       <DemoGuide />
       <Toaster />
@@ -335,14 +353,14 @@ export default function App() {
           <ul className="list-disc space-y-2 pl-5">
             <li>Use the role menu in the header to change persona. Navigation and buttons change by role.</li>
             <li>Every button, link and row responds to a single click or tap.</li>
-            <li>Open Demo guide from the user menu for guided scenarios. Use Reset demo to reload the seed content.</li>
+            <li>Open guide from the user menu for guided scenarios. Use Reset workspace to reload the seed content.</li>
             <li>All integrations (Legislature feed, OFM, SharePoint, Email, Teams) are simulated.</li>
           </ul>
         </Modal>
       )}
       {a11y && (
         <Modal title="Accessibility" onClose={() => setA11y(false)}>
-          <p>This system is designed to meet WCAG 2.2 AA: keyboard operation, visible focus, screen-reader labels, sufficient contrast and reduced-motion support. To report a barrier, contact lts-support@dor-demo.example.</p>
+          <p>This system is designed to meet WCAG 2.2 AA: keyboard operation, visible focus, screen-reader labels, sufficient contrast and reduced-motion support. To report a barrier, contact your system administrator.</p>
         </Modal>
       )}
     </div>

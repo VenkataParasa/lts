@@ -29,6 +29,10 @@ button, a, [role="button"], input, select, textarea, summary { touch-action: man
 .skip-link { position: absolute; left: 8px; top: -60px; z-index: 100; background: #fff; color: var(--color-navy); padding: 10px 16px; border: 2px solid var(--color-gold); font-weight: 600; }
 .skip-link:focus { top: 8px; }
 
+/* Keep short-screen menus reachable by wheel, touch and keyboard without a second visible scrollbar. */
+.nav-menu { scrollbar-width: none; }
+.nav-menu::-webkit-scrollbar { display: none; }
+
 .skeleton { background: linear-gradient(90deg, #e9ebee 25%, #f5f6f7 37%, #e9ebee 63%); background-size: 400% 100%; animation: shimmer 1.3s ease infinite; border-radius: 4px; }
 @keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
 
