@@ -6,10 +6,11 @@ import { ADAPTERS, callAdapter, type AdapterName } from '../adapters'
 import { renderTemplate } from './Review'
 import { go } from '../router'
 import type { Role } from '../types'
+import LegislativeImport from './LegislativeImport'
 
 const SECTIONS = [
   ['roles', 'Roles and permissions'], ['workflow', 'Workflow stages'], ['templates', 'Templates'], ['picklists', 'Pick-lists'],
-  ['session', 'Session setup'], ['ids', 'ID sequences'], ['integrations', 'Integrations'], ['audit', 'Audit log'],
+  ['session', 'Session setup'], ['ids', 'ID sequences'], ['integrations', 'Integrations'], ['imports', 'Legislative imports'], ['audit', 'Audit log'],
 ] as const
 
 const CAPS: [string, Role[]][] = [
@@ -36,7 +37,7 @@ export default function Admin({ section }: { section: string }) {
   const s = SECTIONS.some(x => x[0] === section) ? section : 'roles'
   return (
     <>
-      <PageHeader title="Administration" subtitle="Configuration for the demo. Directory and integration connections are simulated." />
+      <PageHeader title="Administration" subtitle="Application configuration. Directory and integration connections are simulated." />
       <Tabs label="Admin sections" value={s} onChange={v => go(`/admin/${v}`)} tabs={SECTIONS.map(([id, label]) => ({ id, label }))} />
       {s === 'roles' && <Roles />}
       {s === 'workflow' && <Workflow />}
@@ -46,6 +47,7 @@ export default function Admin({ section }: { section: string }) {
       {s === 'ids' && <IdSeq />}
       {s === 'integrations' && <Integrations />}
       {s === 'audit' && <Audit />}
+      {s === 'imports' && <LegislativeImport />}
     </>
   )
 }
@@ -115,7 +117,7 @@ function Templates() {
         <label htmlFor="tb" className="sr-only">Template body</label>
         <textarea id="tb" ref={ta} rows={12} className={`${inputCls} font-mono text-sm`} value={t.body} onChange={e => setBody(e.target.value)} />
       </Card>
-      <Card title={`Preview with ${sample.id}`}><pre className="max-h-[26rem] overflow-auto whitespace-pre-wrap rounded bg-page p-3 text-sm">{renderTemplate(t.body, sample, data, t.format === 'OFM XML')}</pre></Card>
+      <Card title={sample ? `Preview with ${sample.id}` : 'Template preview'}><pre className="max-h-[26rem] overflow-auto whitespace-pre-wrap rounded bg-page p-3 text-sm">{sample ? renderTemplate(t.body, sample, data, t.format === 'OFM XML') : 'Create a fiscal note to preview merged values.'}</pre></Card>
     </div>
   )
 }
@@ -162,7 +164,7 @@ function SessionSetup() {
 
 function IdSeq() {
   const { data, patchData, renameItem, toast } = useStore()
-  const [oldId, setOld] = useState(data.items[0].id)
+  const [oldId, setOld] = useState(data.items[0]?.id ?? '')
   const [nid, setNid] = useState('')
   const [err, setErr] = useState('')
   const names: Record<string, string> = { FN: 'Fiscal notes', FE: 'Fiscal estimates', DR: 'Data requests', BA: 'Bill analyses', PK: 'Packages' }
@@ -171,16 +173,16 @@ function IdSeq() {
       <Card title="Automatic ID sequences">
         <p className="mb-3 text-sm text-muted">IDs are assigned automatically by type. Change the next number to skip ahead.</p>
         <div className="space-y-3">{Object.entries(names).map(([p, label]) => (
-          <div key={p} className="flex items-center gap-3"><span className="w-40">{label} (<code>{p}-27-</code>)</span>
+          <div key={p} className="flex items-center gap-3"><span className="w-40">{label} (<code>{p}-{new Date().getFullYear()}-</code>)</span>
             <input aria-label={`Next number for ${label}`} inputMode="numeric" className={inputCls + ' w-28 tnum'} value={data.idCounters[p] ?? 1} onChange={e => patchData(d => ({ ...d, idCounters: { ...d.idCounters, [p]: Math.max(1, Number(e.target.value.replace(/\D/g, ''))) } }))} /></div>
         ))}</div>
       </Card>
       <Card title="Override an ID">
         <div className="space-y-3">
           <Field label="Item" htmlFor="oi"><Select id="oi" value={oldId} onChange={setOld} options={data.items.map(i => i.id)} /></Field>
-          <Field label="New ID" htmlFor="ni" hint="Must be unique."><input id="ni" className={inputCls} value={nid} onChange={e => { setNid(e.target.value); setErr('') }} placeholder="For example FN-27-901" /></Field>
+          <Field label="New ID" htmlFor="ni" hint="Must be unique."><input id="ni" className={inputCls} value={nid} onChange={e => { setNid(e.target.value); setErr('') }} placeholder={`For example FN-${new Date().getFullYear()}-00901`} /></Field>
           {err && <p role="alert" className="text-bad">{err}</p>}
-          <Button disabled={!nid.trim()} onClick={() => { const e = renameItem(oldId, nid.trim()); if (e) setErr(e); else { toast(`${oldId} is now ${nid.trim()}.`); setOld(nid.trim()); setNid('') } }}>Apply override</Button>
+          <Button disabled={!oldId || !nid.trim()} onClick={() => { const e = renameItem(oldId, nid.trim()); if (e) setErr(e); else { toast(`${oldId} is now ${nid.trim()}.`); setOld(nid.trim()); setNid('') } }}>Apply override</Button>
         </div>
       </Card>
     </div>
@@ -192,7 +194,7 @@ function Integrations() {
   const [busy, setBusy] = useState('')
   return (
     <div className="space-y-4">
-      <div role="note" className="flex items-start gap-2 rounded border border-[#9DC1DE] bg-lightblue p-3 text-[#08487F]"><Icon name="help" className="mt-0.5" /><p><strong>All integrations are simulated in this demo.</strong> No data leaves the browser. Each adapter responds after a short delay and returns a receipt ID.</p></div>
+      <div role="note" className="flex items-start gap-2 rounded border border-[#9DC1DE] bg-lightblue p-3 text-[#08487F]"><Icon name="help" className="mt-0.5" /><p><strong>All integrations are simulated.</strong> No data leaves the browser. Each adapter responds after a short delay and returns a receipt ID.</p></div>
       <Card title="Integration status" pad={false}>
         <DataTable caption="Integrations" rows={ADAPTERS} rowKey={a => a.name} cols={[
           { key: 'n', header: 'System', render: a => <span className="font-semibold">{a.name}</span> }, { key: 's', header: 'Mode', render: () => <Chip tone="info" icon="settings">Simulated</Chip> },

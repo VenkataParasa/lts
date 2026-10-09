@@ -10,7 +10,7 @@ export function Packages({ id }: { id?: string }) {
   const { data, role, patchData, audit, toast, deliverPackage } = useStore()
   const all = useVisibleItems()
   const [nw, setNw] = useState(false)
-  const [bill, setBill] = useState(data.bills.find(b => b.session === '2027')!.id)
+  const [bill, setBill] = useState((data.bills.find(b => b.session === data.sessions.find(s => s.current)?.id) ?? data.bills[0])?.id ?? '')
   const [busy, setBusy] = useState(false)
   const rollup = (p: Pkg) => {
     const its = data.items.filter(i => p.itemIds.includes(i.id))
@@ -60,11 +60,11 @@ export function Packages({ id }: { id?: string }) {
       </Card>
       {nw && (
         <Modal title="New package" onClose={() => setNw(false)}>
-          <Field label="Bill" htmlFor="pb"><Select id="pb" value={bill} onChange={setBill} options={data.bills.filter(b => b.session === '2027' && !b.draft).map(b => ({ value: b.id, label: `${billLabel(b)}: ${b.title.slice(0, 50)}` }))} /></Field>
+          <Field label="Bill" htmlFor="pb"><Select id="pb" value={bill} onChange={setBill} options={data.bills.filter(b => b.session === data.sessions.find(s => s.current)?.id && !b.draft).map(b => ({ value: b.id, label: `${billLabel(b)}: ${b.title.slice(0, 50)}` }))} /></Field>
           <p className="my-3 text-sm text-muted">{candidates.length} unbundled note, estimate or request items exist for this bill.</p>
           <div className="flex gap-2">
             <Button disabled={!candidates.length} onClick={() => {
-              const pid = `PK-27-${String(data.idCounters.PK ?? data.packages.length + 1).padStart(3, '0')}`
+              const pid = `PK-${new Date().getFullYear()}-${String(data.idCounters.PK ?? data.packages.length + 1).padStart(3, '0')}`
               patchData(d => ({ ...d, idCounters: { ...d.idCounters, PK: (d.idCounters.PK ?? 4) + 1 }, packages: [...d.packages, { id: pid, name: `${billLabel(d.bills.find(b => b.id === bill)!)} response package`, billId: bill, itemIds: candidates.map(c => c.id), dueAt: new Date(Math.min(...candidates.map(c => ms(c.dueAt)))).toISOString(), delivered: false }], items: d.items.map(i => (candidates.some(c => c.id === i.id) ? { ...i, packageId: pid } : i)) }))
               audit('Created', pid, `Package with ${candidates.length} items`); toast(`${pid} created with ${candidates.length} items.`); setNw(false); go(`/packages/${pid}`)
             }}>Create package</Button>

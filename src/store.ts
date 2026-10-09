@@ -1,12 +1,17 @@
+import { hearingSimulationRecords } from './hearingSimulation'
+import { getBill } from './retrieval'
+import { useMemo } from 'react'
 import { create } from 'zustand'
 import { buildSeed } from './seedData'
-import { D, H, computeDue, iso, ms, ROLES, canSeeItem, currentVersion } from './lib'
+import { D, H, computeDue, iso, ms, ROLES, canSeeItem, currentVersion, visibleItems } from './lib'
 import type { Bill, BillVersion, ItemType, Notification, Role, Seed, Staff, WorkItem, Comment, SavedQuery, ImplTask } from './types'
 import { callAdapter, type AdapterName } from './adapters'
+import { SampleLscProvider, detectChanges, endpointErrors } from './legislative'
 
 export interface Toast { id: number; kind: 'success' | 'error' | 'info'; msg: string }
 
 interface Store {
+  importLegislation(payload: unknown): void
   data: Seed
   role: Role
   userId: string
@@ -58,29 +63,30 @@ interface Store {
 }
 
 let toastSeq = 1
-let seq = 1000
+let seq = Date.now() * 1000
 
 export const personaFor = (seed: Seed, role: Role) => seed.staff.find(s => s.role === role)!
 
 export const useStore = create<Store>((set, get) => {
-  const initial = buildSeed()
+  const seeded = buildSeed
+  const initial = seeded()
   const startRole: Role = 'Analyst'
   return {
     data: initial, role: startRole, userId: personaFor(initial, startRole).id, now: Date.now(), toasts: [], guideOpen: true,
     navCollapsed: false, drawerOpen: false, simCount: 0,
 
     reset() {
-      const d = buildSeed()
+      const d = seeded()
       const role = get().role
       set({ data: d, userId: personaFor(d, role).id, simCount: 0, now: Date.now() })
-      get().toast('Demo reset. Seed content reloaded.', 'success')
+      get().toast('Workspace reset. Initial records reloaded.', 'success')
     },
     setRole(role) {
       set(s => ({ role, userId: personaFor(s.data, role).id, drawerOpen: false }))
       const u = get().user()
       get().toast(`Now viewing as ${role}: ${u.name}`, 'info')
     },
-    setUser(id) { set({ userId: id }) },
+    setUser(id) { if (get().data.staff.some(s => s.id === id && s.role === get().role)) set({ userId: id }); else get().toast('Select a person matching the active role.', 'error') },
     tick() { set({ now: Date.now() }) },
     toast(msg, kind = 'success') {
       const id = toastSeq++
@@ -101,7 +107,7 @@ export const useStore = create<Store>((set, get) => {
     },
     notify(subject, body, toRoles, link, category = 'Work', channels = ['In-app', 'Email', 'Teams']) {
       const at = iso(Date.now())
-      const list: Notification[] = channels.map(channel => ({ id: `N${++seq}`, at, channel, toRoles, subject, body, link, read: false, category }))
+      const list: Notification[] = channels.filter(channel => get().data.notificationPreferences?.[`${category}|${channel}`] !== false).map(channel => ({ id: `N${++seq}`, at, channel, toRoles, subject, body, link, read: false, category }))
       set(s => ({ data: { ...s.data, notifications: [...list, ...s.data.notifications] } }))
     },
     async external(name, msg) {
@@ -114,7 +120,20 @@ export const useStore = create<Store>((set, get) => {
       set(s => ({ data: { ...s.data, items: s.data.items.map(i => (i.id === id ? fn(i) : i)) } }))
     },
     saveItem(id, fn, detail = 'Content edited') {
-      get().updateItem(id, i => ({ ...fn(i), savedAt: iso(Date.now()) }))
+      const old = get().data.items.find(i => i.id === id)
+      if (!old || old.locked || !(['Manager', 'Administrator', 'Assigner'].includes(get().role) || (['Analyst', 'Expenditure Contributor', 'Budget Office'].includes(get().role) && old.assigneeIds.includes(get().userId)))) { get().toast('You cannot edit this work product.', 'error'); return }
+      get().updateItem(id, i => {
+        const next = fn(i)
+        if (get().role === 'Expenditure Contributor') {
+          const own = i.fiscal?.expenditure.filter(s => s.assigneeId === get().userId).map(s => s.id) ?? []
+          const unauthorized = !next.fiscal || JSON.stringify({ ...next, fiscal: undefined, savedAt: undefined }) !== JSON.stringify({ ...i, fiscal: undefined, savedAt: undefined }) || JSON.stringify(next.fiscal.narrative) !== JSON.stringify(i.fiscal?.narrative) || JSON.stringify(next.fiscal.revenue) !== JSON.stringify(i.fiscal?.revenue) || next.fiscal.expenditure.some(s => !own.includes(s.id) && JSON.stringify(s) !== JSON.stringify(i.fiscal?.expenditure.find(old => old.id === s.id)))
+          if (unauthorized) { get().toast('Contributors can edit their assigned expenditure sections and supporting papers only.', 'error'); return i }
+        }
+        const substantive = ['body', 'topics', 'hasIssues', 'issueNotes'].some(k => JSON.stringify(next[k as keyof WorkItem]) !== JSON.stringify(i[k as keyof WorkItem]))
+        const fiscalChanged = i.fiscal && JSON.stringify(next.fiscal) !== JSON.stringify(i.fiscal)
+        return { ...next, ...(i.type === 'BA' && substantive ? { changesPending: !!i.publishedVersion, stage: 'In progress' as const, reviewApproved: false, execIndex: 0 } : {}), ...(fiscalChanged && ['Approved', 'In review', 'Executive review'].includes(i.stage) ? { stage: 'In progress' as const, reviewApproved: false, execIndex: 0 } : {}), savedAt: iso(Date.now()) }
+      })
+      if (old.type === 'BA') set(s => ({ data: { ...s.data, bills: s.data.bills.map(b => b.id === old.billId ? { ...b, hasIssues: s.data.items.some(i => i.billId === b.id && i.hasIssues) } : b) } }))
       const { data } = get()
       const last = data.audit[0]
       if (!(last && last.action === 'Edited' && last.target === id && last.userId === get().userId && Date.now() - ms(last.at) < 60_000)) get().audit('Edited', id, detail)
@@ -125,6 +144,8 @@ export const useStore = create<Store>((set, get) => {
 
     submitForReview(id) {
       const it = get().data.items.find(i => i.id === id)!
+      if (!it || it.onHold || !['Assigned', 'In progress', 'Rework'].includes(it.stage) || !(['Manager', 'Administrator'].includes(get().role) || get().role === 'Analyst' && it.assigneeIds.includes(get().userId))) { get().toast('Submission is unavailable for your role or this workflow stage.', 'error'); return }
+      if (it.type === 'BA' && (!(it.body ?? '').replace(/<[^>]*>/g, '').trim() || it.hasIssues && !it.issueNotes?.trim())) { get().toast('Add analysis content and details for any identified issues.', 'error'); return }
       get().updateItem(id, i => ({ ...i, stage: 'In review', reviewApproved: false, execIndex: 0 }))
       get().addComment(id, 'Marked done. Sent to review.', 'system')
       get().audit('Marked done', id, 'Submitted for review')
@@ -142,7 +163,7 @@ export const useStore = create<Store>((set, get) => {
         return false
       }
       if (it.stage === 'In review') {
-        if (!['Reviewer', 'Manager', 'Administrator'].includes(role)) { get().toast('Only a Reviewer or Manager can approve at this stage.', 'error'); return false }
+        if (!['Reviewer', 'Manager', 'Administrator'].includes(role) || role === 'Reviewer' && it.reviewerId !== userId) { get().toast('Only a Reviewer or Manager can approve at this stage.', 'error'); return false }
         get().addComment(id, 'Approved at review.', 'approve')
         if (it.execReview && it.execChain.length) {
           get().updateItem(id, i => ({ ...i, stage: 'Executive review', reviewApproved: true, execIndex: 0 }))
@@ -184,6 +205,7 @@ export const useStore = create<Store>((set, get) => {
     returnForRework(id, text) {
       const { userId } = get()
       const it = get().data.items.find(i => i.id === id)!
+      if (!(['Reviewer', 'Manager', 'Administrator'].includes(get().role) && it.stage === 'In review' || get().role === 'Executive Reviewer' && it.stage === 'Executive review' && it.execChain[it.execIndex] === userId)) { get().toast('You cannot return this work at this stage.', 'error'); return false }
       if (it.preparerId === userId) { get().toast('Blocked: you prepared this work product.', 'error'); return false }
       if (!text.trim()) { get().toast('Add a comment explaining what needs to change.', 'error'); return false }
       get().updateItem(id, i => ({ ...i, stage: 'Rework', reviewApproved: false, execIndex: 0 }))
@@ -195,6 +217,7 @@ export const useStore = create<Store>((set, get) => {
     },
 
     routeFiscal(id, revenueAssignee, sections) {
+      if (!['Assigner', 'Manager', 'Administrator'].includes(get().role)) { get().toast('You cannot route work.', 'error'); return }
       get().updateItem(id, i => ({
         ...i, stage: 'In progress',
         assigneeIds: [...new Set([i.preparerId, revenueAssignee, ...sections.map(s => s.assigneeId)].filter(Boolean))],
@@ -213,12 +236,17 @@ export const useStore = create<Store>((set, get) => {
 
     async deliver(id) {
       const it = get().data.items.find(i => i.id === id)!
+      if (!['Manager', 'Assigner', 'Administrator', 'Budget Office'].includes(get().role)) { get().toast('You are not authorized to transmit work.', 'error'); return }
+      if (it.onHold) { get().toast('Release the hold before transmitting.', 'error'); return }
+      if (it.type === 'BA') { await get().publish(id); return }
+      if (it.execReview && it.execIndex < it.execChain.length || !it.reviewApproved) { get().toast('All review stages must be complete.', 'error'); return }
       if (it.stage !== 'Approved') { get().toast('Delivery is blocked until all approvals are complete.', 'error'); return }
-      const adapter: AdapterName = it.type === 'FN' ? 'OFM Fiscal Note System' : it.type === 'FE' ? 'OFM BEARS' : it.type === 'BA' ? 'SharePoint' : 'Email'
-      const receipt = await get().external(adapter, `${id} ${it.type === 'BA' ? 'published' : 'transmitted'}`)
+      if ((it.type === 'FN' || it.type === 'FE') && (!it.fiscal?.narrative.summary.trim() || !it.fiscal.narrative.assumptions.trim())) { get().toast('Fiscal summary and assumptions are required for transmission.', 'error'); return }
+      const adapter: AdapterName = it.type === 'FN' ? 'OFM Fiscal Note System' : it.type === 'FE' ? 'OFM BEARS' : 'Email'
+      const receipt = await get().external(adapter, `${id} transmitted — Simulated integration`)
       get().updateItem(id, i => ({
         ...i, stage: 'Delivered', locked: true, version: i.version + 1,
-        history: [...i.history, { id: `d${++seq}`, at: iso(Date.now()), by: get().userId, channel: adapter, receipt, version: i.version + 1 }],
+        history: [...i.history, { id: `d${++seq}`, at: iso(Date.now()), by: get().userId, channel: adapter, receipt, version: i.version + 1, status: 'SENT', payload: JSON.stringify({ integration: 'Simulated integration', workProductId: i.id, billVersionId: i.billVersionId, revision: i.version + 1, fiscal: i.fiscal, response: i.body }, null, 2), demoResponse: `Successfully transmitted — Simulated integration. Receipt ${receipt}` }],
       }))
       get().audit('Transmitted', id, `Sent via ${adapter}. Receipt ${receipt}. Version locked.`)
       get().notify(`${id} delivered`, `Receipt ${receipt}. The delivered version is locked.`, ['Manager', 'Assigner', 'Budget Office', 'Analyst'], `/review/${id}`, 'Delivery')
@@ -226,10 +254,13 @@ export const useStore = create<Store>((set, get) => {
     },
 
     async deliverPackage(id) {
+      if (!['Assigner', 'Manager', 'Administrator', 'Budget Office'].includes(get().role)) { get().toast('You cannot deliver packages.', 'error'); return }
       const pk = get().data.packages.find(p => p.id === id)!
       const its = get().data.items.filter(i => pk.itemIds.includes(i.id))
-      if (its.some(i => i.stage !== 'Approved' && i.stage !== 'Delivered')) { get().toast('Every item in the package must be approved first.', 'error'); return }
+      if (!its.length || its.length !== pk.itemIds.length || its.some(i => i.stage !== 'Approved' && i.stage !== 'Delivered')) { get().toast('Every item in the package must be approved first.', 'error'); return }
+      if (its.some(i => i.onHold || i.execReview && i.execIndex < i.execChain.length || i.stage !== 'Delivered' && (!i.reviewApproved || i.fiscal && (!i.fiscal.narrative.summary.trim() || !i.fiscal.narrative.assumptions.trim())))) { get().toast('Package blocked: complete required content, release holds and finish all review stages.', 'error'); return }
       for (const it of its) if (it.stage === 'Approved') await get().deliver(it.id)
+      if (!get().data.items.filter(i => pk.itemIds.includes(i.id)).every(i => i.stage === 'Delivered')) return
       set(s => ({ data: { ...s.data, packages: s.data.packages.map(p => (p.id === id ? { ...p, delivered: true } : p)) } }))
       get().audit('Transmitted', id, 'Package delivered as one product')
       get().toast(`${id} delivered as one product.`)
@@ -237,12 +268,15 @@ export const useStore = create<Store>((set, get) => {
 
     async publish(id) {
       const it = get().data.items.find(i => i.id === id)!
+      if (it.onHold) { get().toast('Release the hold before publishing.', 'error'); return }
+      if (it.type !== 'BA' || !['Manager', 'Assigner', 'Administrator'].includes(get().role) || it.stage !== 'Approved' || !it.reviewApproved || it.execReview && it.execIndex < it.execChain.length) { get().toast('Publication requires approval and an authorized publishing role.', 'error'); return }
       const receipt = await get().external('SharePoint', `${id} ${it.publishedVersion ? 're-published' : 'published'}`)
-      get().updateItem(id, i => ({ ...i, publishedVersion: (i.publishedVersion ?? 0) + 1, savedAt: iso(Date.now()) }))
+      get().updateItem(id, i => ({ ...i, stage: 'Delivered', locked: false, changesPending: false, publishedVersion: (i.publishedVersion ?? 0) + 1, savedAt: iso(Date.now()), revisions: [...(i.revisions ?? []), { revision: (i.publishedVersion ?? 0) + 1, at: iso(Date.now()), by: get().userId, body: i.body ?? '', topics: [...(i.topics ?? [])], issueNotes: i.issueNotes ?? '', billVersionId: i.billVersionId }] }))
       get().audit(it.publishedVersion ? 'Re-published' : 'Published', id, `Published version ${(it.publishedVersion ?? 0) + 1} (${receipt})`)
     },
 
     bulkReassign(ids, staffId) {
+      if (!['Assigner', 'Manager', 'Administrator'].includes(get().role)) { get().toast('You cannot reassign work.', 'error'); return }
       const who = get().staffById(staffId)!
       set(s => ({ data: { ...s.data, items: s.data.items.map(i => (ids.includes(i.id) ? { ...i, preparerId: staffId, assigneeIds: [...new Set([staffId, ...i.assigneeIds.filter(a => a !== i.preparerId)])] } : i)) } }))
       ids.forEach(id => get().audit('Reassigned', id, `Reassigned to ${who.name}`))
@@ -259,27 +293,32 @@ export const useStore = create<Store>((set, get) => {
 
     createItem(type, billId, extra = {}) {
       const d = get().data
-      const b = d.bills.find(x => x.id === billId)!
+      if (!['Analyst', 'Assigner', 'Manager', 'Administrator', 'Budget Office'].includes(get().role)) throw new Error('Your role cannot create work products.')
+      const b = getBill(d, billId)!
+      if (!b) throw new Error('Bill does not exist.')
+      if (extra.billVersionId && !b.versions.some(v => v.id === extra.billVersionId)) throw new Error('Version must belong to the selected bill.')
       const n = (d.idCounters[type] ?? 1)
-      const id = `${type}-27-${String(n).padStart(3, '0')}`
+      const id = `${type}-${new Date().getFullYear()}-${String(n).padStart(5, '0')}`
       const nowMs = Date.now()
       const hearing = b.hearings.map(ms).filter(h => h > nowMs).sort()[0]
       const due = computeDue(type, nowMs, hearing)
       const item: WorkItem = {
+        billVersionId: b.currentVersionId,
         id, type, billId, title: `${{ FN: 'Fiscal note', FE: 'Fiscal estimate', DR: 'Data request', BA: 'Bill analysis' }[type]}: ${b.number ? currentVersion(b).label : 'agency request'} ${b.title}`.slice(0, 110),
         stage: 'Assigned', onHold: false, confidential: false, execReview: false, preparerId: get().userId, assigneeIds: [get().userId], startAt: iso(nowMs), dueAt: iso(due),
         customerDueAt: iso(hearing ?? due + 6 * H), priority: due - nowMs < 24 * H ? 'Urgent' : 'Normal', billChanged: false, locked: false, version: 0, execChain: [], execIndex: 0,
         reviewApproved: false, comments: [], history: [], savedAt: iso(nowMs), reviewerId: d.staff.find(s => s.role === 'Reviewer')!.id,
-        ...(type === 'BA' ? { body: '<h3>Summary</h3><p></p>', topics: [...b.topics], hasIssues: false, issueNotes: '', correspondence: [] } : {}),
+        ...(type === 'BA' ? { body: '<h3>What the Bill Does</h3><p></p><h3>Impact on DOR</h3><p></p><h3>Issues / Concerns</h3><p></p><h3>Bill Description</h3><p></p><h3>Recommended Position</h3><p></p><h3>External Contacts</h3><p></p><h3>Internal Collaboration Notes</h3><p></p>', topics: [...b.topics], hasIssues: false, issueNotes: '', correspondence: [] } : {}),
         ...extra,
       }
       if (type === 'FN' || type === 'FE') {
-        const tmpl = d.items.find(i => i.fiscal && d.bills.find(x => x.id === i.billId)?.taxType === b.taxType) ?? d.items.find(i => i.fiscal)!
-        const tf = tmpl.fiscal!
+        const years = Array.from({ length: 4 }, (_, n) => new Date().getFullYear() + 1 + n)
+        const zeros = () => years.map(() => 0)
         item.fiscal = {
-          ...tf, narrative: { summary: '', assumptions: '', methodology: '', prior: '' }, revenueAssigneeId: undefined, revenueDueAt: iso(due - 6 * H), workPapers: [],
-          revenue: tf.revenue.map(r => ({ ...r, values: r.values.map(() => 0) })),
-          expenditure: (type === 'FE' ? tf.expenditure.slice(0, 2) : tf.expenditure).map(e => ({ ...e, assigneeId: undefined, status: 'Not started' as const, hours: e.hours.map(() => 0), goods: 0, equipment: 0, dueAt: iso(due - 4 * H) })),
+          years, narrative: { summary: '', assumptions: '', methodology: '', prior: '' }, revenueDueAt: iso(due - 6 * H), workPapers: [],
+          revenue: [{ fund: 'General Fund-State', values: zeros() }],
+          expenditure: (type === 'FE' ? ['Agency administration', 'Information systems'] : ['Agency administration', 'Information systems', 'Audit and compliance', 'Legal and rulemaking']).map((name, n) => ({ id: `sec-${n + 1}`, name, dueAt: iso(due - 4 * H), status: 'Not started' as const, hours: zeros(), salary: 0, goods: 0, equipment: 0 })),
+          prior: { productId: '', billLabel: '', narrative: '', revenue: [], totalFte: 0 },
         }
         Object.assign(item, extra)
       }
@@ -305,58 +344,44 @@ export const useStore = create<Store>((set, get) => {
     },
 
     markRead(id) {
-      set(s => ({ data: { ...s.data, notifications: s.data.notifications.map(n => (id === 'all' || n.id === id ? { ...n, read: true } : n)) } }))
+      set(s => ({ data: { ...s.data, notifications: s.data.notifications.map(n => (n.toRoles.includes(s.role) && (id === 'all' || n.id === id) ? { ...n, read: true } : n)) } }))
+    },
+
+    importLegislation(payload) {
+      if (!['Assigner', 'Manager', 'Administrator'].includes(get().role)) { get().toast('Import requires Assignment Manager or Administrator access.', 'error'); return }
+      const at = iso(Date.now()), runId = crypto.randomUUID()
+      try {
+        const next = new SampleLscProvider().normalize(payload)
+        const old = getBill(get().data, next.id)
+        const errors = endpointErrors(payload)
+        if (old && errors.some(e => e.includes('GetSponsors'))) { next.sponsors = old.sponsors; next.sponsorRecords = old.sponsorRecords }
+        if (old && errors.some(e => e.includes('GetHearings'))) { next.hearings = old.hearings; next.hearingRecords = old.hearingRecords; next.committee = old.committee }
+        const changes = detectChanges(old, next, at).map(c => ({ ...c, affectedItems: get().data.items.filter(i => i.billId === next.id && i.stage !== 'Delivered').map(i => i.id) }))
+        const merged = { ...next, tracked: old?.tracked ?? false, topics: old?.topics ?? [], hasIssues: old?.hasIssues ?? false, inBudget: old?.inBudget ?? false, versions: [...next.versions, ...(old?.versions ?? []).filter(v => !next.versions.some(n => n.id === v.id))], hearingRecords: [...(next.hearingRecords ?? []), ...(old?.hearingRecords ?? []).filter(h => !next.hearingRecords?.some(n => n.id === h.id))] }
+        set(s => ({ data: { ...s.data, bills: old ? s.data.bills.map(b => b.id === next.id ? merged : b) : [merged, ...s.data.bills], sessions: s.data.sessions.some(x => x.id === next.session) ? s.data.sessions : [...s.data.sessions, { id: next.session, name: next.session, current: false, start: `${next.session.slice(0, 4)}-01-01`, end: `${Number(next.session.slice(0, 4)) + 1}-12-31`, provisioned: false }], legislativeChanges: [...changes, ...(s.data.legislativeChanges ?? [])], importRuns: [{ id: runId, at, by: s.userId, source: next.sourceFeed!.source, billId: next.id, result: 'Imported', errors, raw: payload }, ...(s.data.importRuns ?? [])], items: s.data.items.map(i => changes.some(c => c.affectedItems.includes(i.id)) ? { ...i, billChanged: true } : i) } }))
+        changes.forEach(c => get().notify(`${next.number}: ${c.type}`, `${c.newValue}. Affected work: ${c.affectedItems.join(', ') || 'none'}`, ['Analyst', 'Reviewer', 'Assigner', 'Manager'], `/bills/${next.id}`, 'Legislative changes', ['In-app']))
+        next.versions.filter(v => v.kind === 'amendment' && !old?.versions.some(o => o.id === v.id)).forEach(v => {
+          const prior = get().data.items.find(i => i.billId === next.id && i.type === 'BA')
+          const analyst = prior?.preparerId ?? get().data.staff.find(s => s.role === 'Analyst' && s.division === 'L&P')!.id
+          const task = get().createItem('BA', next.id, { billVersionId: v.id, preparerId: analyst, assigneeIds: [analyst], title: `Amendment analysis: ${v.label}`, reviewerId: prior?.reviewerId })
+          get().notify(`${v.label}: amendment analysis assigned`, `Applies to ${v.appliesToVersionId}. Work ${task.id} retains its own review and audit history.`, ['Analyst', 'Reviewer'], `/analyses/${task.id}`, 'Bills', ['In-app'])
+        })
+        get().audit('Legislative import', next.id, `${changes.length} changes detected. Raw payload retained in ${runId}.`)
+        get().toast(`Imported ${next.number}; ${changes.length} changes detected.`)
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err)
+        set(s => ({ data: { ...s.data, importRuns: [{ id: runId, at, by: s.userId, source: 'LSC', result: 'Failed', errors: [message], raw: payload }, ...(s.data.importRuns ?? [])] } }))
+        get().audit('Legislative import failed', runId, message)
+        get().toast(message, 'error')
+      }
     },
 
     async simulateLegislature() {
       const st = get()
-      const n = st.simCount
-      const nowMs = Date.now()
-      const numbered = st.data.bills.filter(b => b.session === '2027' && !b.draft && b.number)
-      const noSoon = numbered.filter(b => !b.hearings.some(h => ms(h) > nowMs && ms(h) < nowMs + 72 * H))
-      const withFn = numbered.filter(b => st.data.items.some(i => i.billId === b.id && i.type === 'FN'))
-      const verBill = withFn[(n * 3 + 2) % withFn.length]
-      const ampBill = numbered[(n * 5 + 7) % numbered.length]
-      const hearBill = noSoon[(n * 4) % noSoon.length]
-      const label = await (async () => { await callAdapter('Legislature feed'); return 'ok' })()
-      void label
-      const hearingAt = nowMs + 20 * H
-      const newVersion = (b: Bill): BillVersion => {
-        const cur = currentVersion(b)
-        const chainPrefixes = b.chamber === 'House' ? ['HB', 'SHB', '2SHB', 'ESHB', 'E2SHB'] : ['SB', 'SSB', '2SSB', 'ESSB', 'E2SSB']
-        const nVer = b.versions.filter(v => v.kind === 'version').length
-        const num = b.number!.replace(/^[A-Z]+ /, '')
-        const text = cur.text.replace(/(\d+) percent/, (_, x) => `${+x + 2} percent`).replace('January 1, 2028', 'July 1, 2028') + '\n\nSec. 6. The department may adopt emergency rules to implement this act.'
-        return { id: `${b.id}-V${nVer + 1}s${n}`, label: `${chainPrefixes[Math.min(nVer, 4)]} ${num}`, kind: 'version', date: iso(nowMs), text }
-      }
-      const nv = newVersion(verBill)
-      const amText = currentVersion(ampBill).text.replace(/\$([\d,]+)/, (_, x) => '$' + (parseInt(x.replace(/,/g, '')) * 2).toLocaleString('en-US'))
-      const am: BillVersion = { id: `${ampBill.id}-A${ampBill.versions.length + 1}s${n}`, label: `Amendment ${ampBill.number!.replace(/^[A-Z]+ /, '')}-A${ampBill.versions.filter(v => v.kind === 'amendment').length + 1}`, kind: 'amendment', date: iso(nowMs), text: amText, analyzed: false, sponsor: ampBill.sponsors[0] }
-      // apply bill changes
-      set(s => ({
-        simCount: s.simCount + 1,
-        data: {
-          ...s.data,
-          bills: s.data.bills.map(b => {
-            if (b.id === verBill.id) return { ...b, versions: [...b.versions, nv], currentVersionId: nv.id }
-            if (b.id === ampBill.id) return { ...b, versions: [...b.versions, am] }
-            if (b.id === hearBill.id) return { ...b, hearings: [...b.hearings, iso(hearingAt)].sort() }
-            return b
-          }),
-          items: s.data.items.map(i => (i.billId === verBill.id && i.stage !== 'Delivered' ? { ...i, billChanged: true } : i)),
-        },
-      }))
-      // urgent tasks for the new hearing: assign to the analysts with lowest workload
-      const load = (id: string) => get().data.items.filter(i => i.preparerId === id && i.stage !== 'Delivered').length
-      const sorted = [...get().data.staff.filter(s => s.role === 'Analyst')].sort((a, b) => load(a.id) - load(b.id))
-      const t1 = get().createItem('BA', hearBill.id, { preparerId: sorted[0].id, assigneeIds: [sorted[0].id], priority: 'Urgent', stage: 'Assigned' })
-      const t2 = get().createItem('FN', hearBill.id, { preparerId: sorted[1].id, assigneeIds: [sorted[1].id], priority: 'Urgent', stage: 'Assigned', execReview: false })
-      const t3 = get().createItem('BA', ampBill.id, { preparerId: sorted[2].id, assigneeIds: [sorted[2].id], title: `Bill analysis: ${am.label} amendment`, stage: 'Assigned' })
-      get().audit('Legislature update', hearBill.id, `New hearing ${new Date(hearingAt).toLocaleString()}; new version ${nv.label} on ${verBill.number}; amendment ${am.label}`)
-      get().notify('Legislature update: new hearing within 72 hours', `${hearBill.number} hearing in about 20 hours. Tasks ${t1.id}, ${t2.id} created.`, ['Analyst', 'Assigner', 'Manager', 'Executive Reviewer', 'Leadership'], `/bills/${hearBill.id}`, 'Hearings')
-      get().notify('Bill changed', `${nv.label} replaced the prior version of ${verBill.number}. Open work products were flagged "Bill changed".`, ['Analyst', 'Reviewer', 'Assigner', 'Manager'], `/bills/${verBill.id}`, 'Bills')
-      get().notify('New amendment awaiting analysis', `${am.label} was filed. Task ${t3.id} created.`, ['Analyst', 'Assigner'], `/compare?bill=${ampBill.id}`, 'Bills')
-      get().toast(`Legislature feed (simulated): ${nv.label} version, ${am.label} and a hearing for ${hearBill.number} in 20 hours. 3 tasks created.`, 'info')
+      if (!['Analyst', 'Assigner', 'Manager', 'Administrator'].includes(st.role)) { get().toast('Switch to Analyst, Assigner, Manager or Administrator to run the simulated legislative update.', 'error'); return }
+      for (const raw of hearingSimulationRecords()) get().importLegislation(raw)
+      set(s => ({ simCount: s.simCount + 1 }))
+      get().toast('Simulated hearings refreshed at 20, 48, 70 and 96 hours. No work assignments were created.', 'info')
     },
 
     async provisionSession(id) {
@@ -375,7 +400,10 @@ export const useStore = create<Store>((set, get) => {
       get().toast('Implementation task assigned.')
     },
     patchTask(id, patch) {
+      const task = get().data.implTasks.find(t => t.id === id)
+      if (!task || !['Assigner', 'Manager', 'Administrator'].includes(get().role) && task.owner !== get().user().name) { get().toast('Only the task owner or a manager can update this task.', 'error'); return }
       set(s => ({ data: { ...s.data, implTasks: s.data.implTasks.map(t => (t.id === id ? { ...t, ...patch } : t)) } }))
+      get().audit('Implementation task updated', id, JSON.stringify(patch))
     },
     flagEnacted(billId) {
       set(s => ({ data: { ...s.data, bills: s.data.bills.map(b => (b.id === billId ? { ...b, enacted: true, status: 'Signed' } : b)) } }))
@@ -388,6 +416,6 @@ export const useStore = create<Store>((set, get) => {
 export const useMe = () => useStore(s => s.data.staff.find(x => x.id === s.userId)!)
 export const useVisibleItems = () => {
   const data = useStore(s => s.data), role = useStore(s => s.role), me = useMe()
-  return data.items.filter(i => canSeeItem(i, role, me))
+  return useMemo(() => visibleItems(data, role, me), [data.items, role, me])
 }
 export { ROLES, D }

@@ -9,7 +9,7 @@ import { STAGES } from '../types'
 const QUICK: Record<Role, { label: string; to: string; icon: string }[]> = {
   Analyst: [{ label: 'See my assigned work', to: '/queue', icon: 'list' }, { label: 'Compare bill versions', to: '/compare', icon: 'compare' }, { label: 'Open bill analyses', to: '/analyses', icon: 'edit' }, { label: 'Find a bill', to: '/bills', icon: 'search' }],
   Reviewer: [{ label: 'Review waiting work', to: '/executive', icon: 'eye' }, { label: 'See my queue', to: '/queue', icon: 'list' }, { label: 'Find a bill', to: '/bills', icon: 'search' }],
-  Assigner: [{ label: 'Route a fiscal note', to: '/fiscal/FN-27-001?tab=assign', icon: 'users' }, { label: 'Reassign work in bulk', to: '/queue', icon: 'list' }, { label: 'See hearings', to: '/bills?hearing=72', icon: 'clock' }],
+  Assigner: [{ label: 'Route a fiscal note', to: '/fiscal', icon: 'users' }, { label: 'Reassign work in bulk', to: '/queue', icon: 'list' }, { label: 'See hearings', to: '/bills?hearing=72', icon: 'clock' }],
   Manager: [{ label: 'See workload reports', to: '/reports', icon: 'chart' }, { label: 'Reassign work in bulk', to: '/queue', icon: 'list' }, { label: 'Track implementation', to: '/implementation', icon: 'flag' }],
   'Executive Reviewer': [{ label: 'Approve waiting items', to: '/executive', icon: 'shield' }, { label: 'See hearings', to: '/bills?hearing=72', icon: 'clock' }],
   Leadership: [{ label: 'See waiting approvals', to: '/executive', icon: 'shield' }, { label: 'Open reports', to: '/reports', icon: 'chart' }, { label: 'Track implementation', to: '/implementation', icon: 'flag' }],
@@ -56,7 +56,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <PageHeader title={`Good day, ${me.name.split(' ')[0]}`} subtitle={`${role} dashboard. 2027 regular session, ${bills.filter(b => b.session === '2027').length} bills tracked.`} />
+      <PageHeader title={`Good day, ${me.name.split(' ')[0]}`} subtitle={`${role} dashboard. ${data.sessions.find(s => s.current)?.name ?? 'All sessions'}, ${bills.filter(b => b.tracked).length} bills tracked.`} />
 
       <Card title="Quick actions: I want to..." className="mb-4">
         <ul className="flex flex-wrap gap-2">

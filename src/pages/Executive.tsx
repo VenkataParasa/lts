@@ -1,3 +1,4 @@
+import { getBill } from '../retrieval'
 import { useState } from 'react'
 import { useStore, useMe, useVisibleItems } from '../store'
 import { A, Button, Card, Chip, ClockChip, EmptyState, Field, Icon, LinkButton, PageHeader, StageChip, inputCls, Skeleton, useLoading } from '../components/ui'
@@ -20,7 +21,7 @@ export default function Executive() {
   if (loading) return <><PageHeader title="Approvals" /><Skeleton rows={6} /></>
 
   const card = (i: WorkItem, actionable: boolean) => {
-    const bill = data.bills.find(b => b.id === i.billId)!
+    const bill = getBill(data, i.billId)!
     return (
       <li key={i.id}>
         <Card className="h-full">

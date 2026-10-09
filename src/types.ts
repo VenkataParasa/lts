@@ -9,8 +9,10 @@ export interface Staff { id: string; name: string; division: Division; title: st
 export interface Session { id: string; name: string; current: boolean; start: string; end: string; provisioned: boolean }
 
 export interface BillVersion {
+  metadata?: Record<string, unknown>
+  appliesToVersionId?: string
   id: string
-  label: string // e.g. "SHB 7101" or "Amendment 7101-A1"
+  label: string // e.g. "E3SHB 1960" or a source amendment name
   kind: 'version' | 'amendment'
   date: string
   text: string
@@ -23,6 +25,11 @@ export type BillStatus =
   | 'Passed legislature' | 'Signed' | 'Died' | 'Draft request'
 
 export interface Bill {
+  sourceFeed?: { source: string; retrievedAtUtc: string; url: string }
+  legislation?: Record<string, unknown>
+  sponsorRecords?: Record<string, unknown>[]
+  hearingRecords?: HearingRecord[]
+  tracked?: boolean
   id: string
   session: string
   number: string | null // null for agency-request drafts
@@ -49,9 +56,18 @@ export const STAGES: Stage[] = ['Assigned', 'In progress', 'In review', 'Rework'
 
 export interface Comment { id: string; by: string; at: string; text: string; kind: 'comment' | 'return' | 'approve' | 'system'; section?: string }
 export interface Correspondence { id: string; to: string; sent: string; responseReceived: boolean; responseDate?: string; note: string }
-export interface Delivery { id: string; at: string; by: string; channel: string; receipt: string; version: number }
+export interface Delivery { id: string; at: string; by: string; channel: string; receipt: string; version: number; payload?: string; status?: 'SENT'; demoResponse?: string }
 
 export interface WorkItem {
+  workKind?: 'Bill Description'
+  billVersionId?: string
+  backupId?: string
+  managerId?: string
+  reviewerDueAt?: string
+  publicationTarget?: string
+  changesPending?: boolean
+  provenance?: string
+  revisions?: { revision: number; at: string; by: string; body: string; topics: string[]; issueNotes: string; billVersionId?: string }[]
   id: string
   type: ItemType
   billId: string
@@ -104,7 +120,7 @@ export interface FiscalData {
   revenueAssigneeId?: string
   revenueDueAt: string
   expenditure: ExpSection[]
-  workPapers: { id: string; name: string; size: string; by: string }[]
+  workPapers: { id: string; name: string; size: string; by: string; content?: string; mime?: string; at?: string }[]
   prior: { productId: string; billLabel: string; narrative: string; revenue: RevenueRow[]; totalFte: number }
 }
 
@@ -116,7 +132,7 @@ export interface Notification {
 
 export interface AuditEntry { id: string; at: string; userId: string; role: Role; action: string; target: string; detail: string; confidential?: boolean }
 
-export interface ImplTask { id: string; billId: string; title: string; owner: string; division: Division; dueAt: string; done: boolean }
+export interface ImplTask { id: string; billId: string; title: string; owner: string; division: Division; dueAt: string; done: boolean; completedAt?: string; notes?: string }
 
 export interface SavedQuery { id: string; name: string; taxType: string; minAmount: number; sessions: string[]; by: string }
 
@@ -125,6 +141,9 @@ export interface Clause { id: string; title: string; text: string }
 export interface WorkflowStageDef { id: string; name: string; slaHours: number; who: string }
 
 export interface Seed {
+  notificationPreferences?: Record<string, boolean>
+  importRuns?: ImportRun[]
+  legislativeChanges?: LegislativeChange[]
   now: string
   staff: Staff[]
   sessions: Session[]
@@ -144,3 +163,7 @@ export interface Seed {
   idCounters: Record<string, number>
   savedViews: { id: string; name: string; filter: Record<string, string> }[]
 }
+
+export interface HearingRecord { id: string; billVersionId: string; committee: string; chamber: string; date: string; cancelled: boolean; revisedDate?: string; type: string; description: string; location: string; metadata: Record<string, unknown> }
+export interface ImportRun { id: string; at: string; by: string; source: string; billId?: string; result: 'Imported' | 'Failed'; errors: string[]; raw: unknown }
+export interface LegislativeChange { id: string; billId: string; type: string; oldValue: string; newValue: string; at: string; source: string; affectedItems: string[]; acknowledged: boolean }

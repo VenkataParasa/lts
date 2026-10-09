@@ -1,13 +1,36 @@
 import { useState } from 'react'
 import { useStore } from '../store'
 import { A, Button, Card, Chip, DataTable, EmptyState, Field, Modal, PageHeader, Select, inputCls } from '../components/ui'
-import { billLabel, canAssign, csv, download, fmtDate, iso, ms, D } from '../lib'
-import type { Division } from '../types'
+import { billLabel, currentVersion, canAssign, csv, download, fmtDate, iso, ms, D } from '../lib'
+import type { Bill, Division } from '../types'
+
+function BillDetails({ bill }: { bill: Bill }) {
+  const version = currentVersion(bill)
+  const legislation = version.metadata ?? bill.legislation ?? {}
+  const status = (bill.legislation?.CurrentStatus ?? {}) as Record<string, unknown>
+  const description = version.text || String(legislation.LongDescription ?? legislation.LegalTitle ?? bill.title)
+  const actionDate = typeof status.ActionDate === 'string' && Number.isFinite(Date.parse(status.ActionDate)) && !status.ActionDate.startsWith('0001-') ? fmtDate(status.ActionDate) : undefined
+  const fiscalRequirement = (key: string) => typeof legislation[key] === 'boolean' ? legislation[key] ? 'Required' : 'Not required' : 'Not supplied'
+  return <section aria-label={`Legislative details for ${billLabel(bill)}`} className="space-y-3 border-b border-line px-4 py-4">
+    <h3 className="font-semibold text-navy">{bill.title}</h3>
+    <p className="text-ink">{description}</p>
+    <dl className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
+      <div><dt className="font-semibold text-muted">Enactment status</dt><dd>{bill.status}</dd></div>
+      <div><dt className="font-semibold text-muted">Chamber</dt><dd>{bill.chamber}</dd></div>
+      <div><dt className="font-semibold text-muted">Current bill version</dt><dd>{version.label}</dd></div>
+      <div className="sm:col-span-2"><dt className="font-semibold text-muted">Latest legislative action</dt><dd>{String(status.HistoryLine || 'Not supplied')}{actionDate && ` (${actionDate})`}</dd></div>
+      <div><dt className="font-semibold text-muted">State / local fiscal note</dt><dd>{fiscalRequirement('StateFiscalNote')} / {fiscalRequirement('LocalFiscalNote')}</dd></div>
+      <div className="sm:col-span-2"><dt className="font-semibold text-muted">Sponsors</dt><dd>{bill.sponsors.join(', ') || 'Not supplied'}</dd></div>
+      <div><dt className="font-semibold text-muted">Legislative history</dt><dd>{bill.versions.filter(v => v.kind === 'version').length} versions, {bill.versions.filter(v => v.kind === 'amendment').length} amendments, {bill.hearingRecords?.length ?? bill.hearings.length} hearings</dd></div>
+    </dl>
+    <div className="flex flex-wrap gap-4 text-sm"><A to={`/bills/${bill.id}`}>View full bill details</A><A to={`/bills/${bill.id}?tab=Versions%20%26%20Amendments`}>Versions and amendments</A><A to={`/bills/${bill.id}?tab=Hearings`}>Hearing history</A></div>
+  </section>
+}
 
 export default function Implementation() {
   const { data, role, now, addImplTask, patchTask, flagEnacted, toast } = useStore()
   const enacted = data.bills.filter(b => b.enacted)
-  const candidates = data.bills.filter(b => !b.enacted && b.session === '2027' && !b.draft)
+  const candidates = data.bills.filter(b => !b.enacted && b.session === data.sessions.find(s => s.current)?.id && !b.draft)
   const [flag, setFlag] = useState(candidates[0]?.id ?? '')
   const [f, setF] = useState({ bill: enacted[0]?.id ?? '', title: '', owner: data.staff.find(s => s.role === 'Expenditure Contributor')!.id, due: iso(now + 14 * D).slice(0, 10) })
   const [report, setReport] = useState(false)
@@ -43,14 +66,16 @@ export default function Implementation() {
       {rows.length === 0 && <Card><EmptyState title="No enacted bills yet" text="Flag an enacted bill to start tracking implementation." /></Card>}
       <div className="space-y-4">
         {rows.map(r => (
-          <Card key={r.b.id} title={<span><A to={`/bills/${r.b.id}`}>{billLabel(r.b)}</A> <span className="text-base font-normal text-muted">{r.b.session} session</span></span>}
+          <Card key={r.b.id} title={<span><A to={`/bills/${r.b.id}`}>{billLabel(r.b)}</A> <span className="text-base font-normal text-muted">{r.b.session} biennium</span></span>}
             actions={<><Chip tone="info" icon="check">{r.done} of {r.tasks.length} complete</Chip>{r.late > 0 && <Chip tone="bad" icon="alert">{r.late} overdue</Chip>}</>} pad={false}>
-            <p className="px-4 pt-3 text-muted">{r.b.title}</p>
+            <BillDetails bill={r.b} />
             <DataTable caption={`Tasks for ${billLabel(r.b)}`} rows={r.tasks} rowKey={t => t.id} empty={<EmptyState title="No tasks yet" text="Assign the first cross-division task." />}
               cols={[
-                { key: 'd', header: 'Done', render: t => <input type="checkbox" className="h-5 w-5" aria-label={`Mark ${t.title} complete`} checked={t.done} disabled={!canManage && role !== 'Analyst'} onChange={e => { patchTask(t.id, { done: e.target.checked }); toast(e.target.checked ? 'Task marked complete.' : 'Task reopened.', 'info') }} /> },
+                { key: 'd', header: 'Done', render: t => <input type="checkbox" className="h-5 w-5" aria-label={`Mark ${t.title} complete`} checked={t.done} disabled={!canManage && t.owner !== useStore.getState().user().name} onChange={e => { patchTask(t.id, { done: e.target.checked, completedAt: e.target.checked ? new Date().toISOString() : undefined }); toast(e.target.checked ? 'Task marked complete.' : 'Task reopened.', 'info') }} /> },
                 { key: 't', header: 'Task', render: t => t.title },
                 { key: 'o', header: 'Owner', render: t => t.owner },
+                { key: 'notes', header: 'Notes', render: t => <input aria-label={`Notes for ${t.title}`} className={inputCls} disabled={!canManage && t.owner !== useStore.getState().user().name} defaultValue={t.notes ?? ''} onBlur={e => { if (e.target.value !== (t.notes ?? '')) patchTask(t.id, { notes: e.target.value }) }} /> },
+                { key: 'completed', header: 'Completed', render: t => t.completedAt ? fmtDate(t.completedAt) : '—' },
                 { key: 'v', header: 'Division', render: t => t.division, className: 'hidden md:table-cell' },
                 { key: 'du', header: 'Due', sort: t => ms(t.dueAt), render: t => <span className="tnum">{fmtDate(t.dueAt)}</span> },
                 { key: 's', header: 'Status', render: t => (t.done ? <Chip tone="ok" icon="check">Complete</Chip> : ms(t.dueAt) < now ? <Chip tone="bad" icon="alert">Overdue</Chip> : <Chip tone="info" icon="clock">Open</Chip>) },

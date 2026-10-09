@@ -1,0 +1,404 @@
+{
+  "now": "2026-10-05T09:21:00.000Z",
+  "staff": [
+    {
+      "id": "S01",
+      "name": "Odalys Fenwick",
+      "division": "RFA",
+      "title": "Revenue analyst 3",
+      "role": "Analyst",
+      "email": "odalys.fenwick@dor.example"
+    },
+    {
+      "id": "S02",
+      "name": "Tavish Norrell",
+      "division": "RFA",
+      "title": "Revenue analyst 3",
+      "role": "Analyst",
+      "email": "tavish.norrell@dor.example"
+    },
+    {
+      "id": "S03",
+      "name": "Ilse Brandvold",
+      "division": "RFA",
+      "title": "Revenue analyst 2",
+      "role": "Analyst",
+      "email": "ilse.brandvold@dor.example"
+    },
+    {
+      "id": "S04",
+      "name": "Corwin Achterberg",
+      "division": "L&P",
+      "title": "Tax policy specialist 3",
+      "role": "Analyst",
+      "email": "corwin.achterberg@dor.example"
+    },
+    {
+      "id": "S05",
+      "name": "Pilar Yeomans",
+      "division": "L&P",
+      "title": "Tax policy specialist 2",
+      "role": "Analyst",
+      "email": "pilar.yeomans@dor.example"
+    },
+    {
+      "id": "S06",
+      "name": "Dashiell Varga",
+      "division": "RFA",
+      "title": "Revenue analyst 2",
+      "role": "Analyst",
+      "email": "dashiell.varga@dor.example"
+    },
+    {
+      "id": "S07",
+      "name": "Lenora Quist",
+      "division": "L&P",
+      "title": "Tax policy specialist 3",
+      "role": "Analyst",
+      "email": "lenora.quist@dor.example"
+    },
+    {
+      "id": "S08",
+      "name": "Emeric Tolliver",
+      "division": "Property Tax",
+      "title": "Property tax analyst",
+      "role": "Analyst",
+      "email": "emeric.tolliver@dor.example"
+    },
+    {
+      "id": "S09",
+      "name": "Jocasta Ridley",
+      "division": "RFA",
+      "title": "Senior revenue analyst",
+      "role": "Reviewer",
+      "email": "jocasta.ridley@dor.example"
+    },
+    {
+      "id": "S10",
+      "name": "Barnaby Lindqvist",
+      "division": "L&P",
+      "title": "Senior policy specialist",
+      "role": "Reviewer",
+      "email": "barnaby.lindqvist@dor.example"
+    },
+    {
+      "id": "S11",
+      "name": "Sunniva Marchetti",
+      "division": "RFA",
+      "title": "Senior revenue analyst",
+      "role": "Reviewer",
+      "email": "sunniva.marchetti@dor.example"
+    },
+    {
+      "id": "S12",
+      "name": "Hollis Deverell",
+      "division": "RFA",
+      "title": "Legislative coordinator",
+      "role": "Assigner",
+      "email": "hollis.deverell@dor.example"
+    },
+    {
+      "id": "S13",
+      "name": "Petra Anselmo",
+      "division": "L&P",
+      "title": "Legislative coordinator",
+      "role": "Assigner",
+      "email": "petra.anselmo@dor.example"
+    },
+    {
+      "id": "S14",
+      "name": "Ambrose Kettleby",
+      "division": "RFA",
+      "title": "Research and fiscal analysis manager",
+      "role": "Manager",
+      "email": "ambrose.kettleby@dor.example"
+    },
+    {
+      "id": "S15",
+      "name": "Yusra Calloway",
+      "division": "L&P",
+      "title": "Legislation and policy manager",
+      "role": "Manager",
+      "email": "yusra.calloway@dor.example"
+    },
+    {
+      "id": "S16",
+      "name": "Delphine Ostrander",
+      "division": "Executive",
+      "title": "Assistant director",
+      "role": "Executive Reviewer",
+      "email": "delphine.ostrander@dor.example"
+    },
+    {
+      "id": "S17",
+      "name": "Rowan Abelard",
+      "division": "Executive",
+      "title": "Deputy director",
+      "role": "Executive Reviewer",
+      "email": "rowan.abelard@dor.example"
+    },
+    {
+      "id": "S18",
+      "name": "Thaddeus Prewitt",
+      "division": "Executive",
+      "title": "Legislative director",
+      "role": "Executive Reviewer",
+      "email": "thaddeus.prewitt@dor.example"
+    },
+    {
+      "id": "S19",
+      "name": "Marguerite Sallow",
+      "division": "Executive",
+      "title": "Director",
+      "role": "Leadership",
+      "email": "marguerite.sallow@dor.example"
+    },
+    {
+      "id": "S20",
+      "name": "Ferris Oakhurst",
+      "division": "Information Services",
+      "title": "Systems program manager",
+      "role": "Expenditure Contributor",
+      "email": "ferris.oakhurst@dor.example"
+    },
+    {
+      "id": "S21",
+      "name": "Leocadia Winthrop",
+      "division": "Taxpayer Services",
+      "title": "Customer service manager",
+      "role": "Expenditure Contributor",
+      "email": "leocadia.winthrop@dor.example"
+    },
+    {
+      "id": "S22",
+      "name": "Garrick Malloy",
+      "division": "Audit",
+      "title": "Audit program manager",
+      "role": "Expenditure Contributor",
+      "email": "garrick.malloy@dor.example"
+    },
+    {
+      "id": "S23",
+      "name": "Isolde Penhallow",
+      "division": "Budget Office",
+      "title": "Budget analyst",
+      "role": "Budget Office",
+      "email": "isolde.penhallow@dor.example"
+    },
+    {
+      "id": "S24",
+      "name": "Nestor Bellweather",
+      "division": "Taxpayer Services",
+      "title": "Communications assistant",
+      "role": "Read-only",
+      "email": "nestor.bellweather@dor.example"
+    },
+    {
+      "id": "S25",
+      "name": "Cassius Hartnell",
+      "division": "Information Services",
+      "title": "Application administrator",
+      "role": "Administrator",
+      "email": "cassius.hartnell@dor.example"
+    }
+  ],
+  "sessions": [],
+  "items": [],
+  "packages": [],
+  "notifications": [],
+  "audit": [],
+  "implTasks": [],
+  "savedQueries": [],
+  "templates": [
+    {
+      "id": "T1",
+      "name": "Fiscal note (Word)",
+      "format": "Word",
+      "body": "FISCAL NOTE {{item.id}}\nBill: {{bill.label}} - {{bill.title}}\nSession: {{bill.session}}\nPrepared by: {{item.preparer}}\n\nSUMMARY\n{{fiscal.summary}}\n\nASSUMPTIONS\n{{fiscal.assumptions}}\n\nTOTAL REVENUE IMPACT (FY2027-FY2030): {{fiscal.total}}\nTOTAL EXPENDITURE (FY2027-FY2030): {{fiscal.expenditure}}\n\nDelivered {{delivery.date}}"
+    },
+    {
+      "id": "T2",
+      "name": "Fiscal note (PDF)",
+      "format": "PDF",
+      "body": "Washington State Department of Revenue\nFiscal Note {{item.id}}  |  {{bill.label}}\n{{bill.title}}\n\n{{fiscal.summary}}\n\nRevenue impact: {{fiscal.total}}\nDelivered {{delivery.date}}"
+    },
+    {
+      "id": "T3",
+      "name": "OFM XML export",
+      "format": "OFM XML",
+      "body": "<FiscalNote id=\"{{item.id}}\" session=\"{{bill.session}}\">\n  <Bill number=\"{{bill.number}}\" version=\"{{bill.label}}\"/>\n  <Summary>{{fiscal.summary}}</Summary>\n  <RevenueTotal>{{fiscal.total}}</RevenueTotal>\n  <ExpenditureTotal>{{fiscal.expenditure}}</ExpenditureTotal>\n  <TransmittedOn>{{delivery.date}}</TransmittedOn>\n</FiscalNote>"
+    },
+    {
+      "id": "T4",
+      "name": "Bill analysis (Word)",
+      "format": "Word",
+      "body": "BILL ANALYSIS {{item.id}}\n{{bill.label}} - {{bill.title}}\nTopics: {{item.topics}}\n\n{{analysis.body}}"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "CL1",
+      "title": "Effective date statement",
+      "text": "This act takes effect on the date shown in the bill. Section-level effective dates are noted where they differ."
+    },
+    {
+      "id": "CL2",
+      "title": "Department rulemaking authority",
+      "text": "The bill requires the department to adopt rules to administer the new provisions."
+    },
+    {
+      "id": "CL3",
+      "title": "Reporting requirement",
+      "text": "The department must report to the fiscal committees of the legislature on the use of the preference."
+    },
+    {
+      "id": "CL4",
+      "title": "Tax preference expiration",
+      "text": "The tax preference expires on the date stated in the bill, and taxpayers may not claim it after that date."
+    },
+    {
+      "id": "CL5",
+      "title": "Administrative impact statement",
+      "text": "The department would update returns, instructions and systems, and answer taxpayer questions."
+    },
+    {
+      "id": "CL6",
+      "title": "Current law summary",
+      "text": "Under current law, taxpayers pay the full amount due with no adjustment for the activity described in the bill."
+    },
+    {
+      "id": "CL7",
+      "title": "Retroactive application",
+      "text": "The bill applies to periods beginning on or after its effective date. It does not apply retroactively."
+    },
+    {
+      "id": "CL8",
+      "title": "Severability",
+      "text": "If any provision is held invalid, the remainder of the act is not affected."
+    }
+  ],
+  "picklists": {
+    "Topics": [
+      "Small business",
+      "Manufacturing",
+      "Housing",
+      "Agriculture",
+      "Health care",
+      "Education funding",
+      "Clean energy",
+      "Low-income relief",
+      "Local government",
+      "Nonprofits",
+      "Tax administration"
+    ],
+    "Tax types": [
+      "B&O tax",
+      "Retail sales and use tax",
+      "Property tax",
+      "Capital gains tax",
+      "Estate tax",
+      "Tax incentives",
+      "Cigarette and tobacco",
+      "Working families tax credit"
+    ],
+    "Committees": [],
+    "Priorities": [
+      "Low",
+      "Normal",
+      "High",
+      "Urgent"
+    ],
+    "Divisions": [
+      "RFA",
+      "L&P",
+      "Executive",
+      "Budget Office",
+      "Audit",
+      "Taxpayer Services",
+      "Information Services",
+      "Property Tax"
+    ]
+  },
+  "costRules": {
+    "hoursPerFte": 2088,
+    "benefitsRate": 0.32,
+    "goodsPerFte": 9200,
+    "equipmentPerFte": 4300
+  },
+  "workflow": [
+    {
+      "id": "W1",
+      "name": "Assigned",
+      "slaHours": 4,
+      "who": "Assigner"
+    },
+    {
+      "id": "W2",
+      "name": "In progress",
+      "slaHours": 48,
+      "who": "Analyst / Expenditure Contributor"
+    },
+    {
+      "id": "W3",
+      "name": "In review",
+      "slaHours": 8,
+      "who": "Reviewer"
+    },
+    {
+      "id": "W4",
+      "name": "Rework",
+      "slaHours": 8,
+      "who": "Analyst"
+    },
+    {
+      "id": "W5",
+      "name": "Executive review",
+      "slaHours": 12,
+      "who": "Executive Reviewers (in sequence)"
+    },
+    {
+      "id": "W6",
+      "name": "Approved",
+      "slaHours": 2,
+      "who": "Final gate"
+    },
+    {
+      "id": "W7",
+      "name": "Delivered",
+      "slaHours": 0,
+      "who": "System"
+    }
+  ],
+  "presence": {},
+  "idCounters": {
+    "FN": 1,
+    "FE": 1,
+    "DR": 1,
+    "BA": 1,
+    "PK": 1
+  },
+  "savedViews": [
+    {
+      "id": "V1",
+      "name": "Urgent fiscal notes",
+      "filter": {
+        "type": "FN",
+        "priority": "Urgent"
+      }
+    },
+    {
+      "id": "V2",
+      "name": "Executive review items",
+      "filter": {
+        "exec": "1"
+      }
+    },
+    {
+      "id": "V3",
+      "name": "Confidential work",
+      "filter": {
+        "confidential": "1"
+      }
+    }
+  ]
+}

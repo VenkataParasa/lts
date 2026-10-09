@@ -1,3 +1,4 @@
+import { getBill } from '../retrieval'
 import { useMemo, useState } from 'react'
 import { useStore, useMe, useVisibleItems } from '../store'
 import { A, Button, Card, ClockChip, DataTable, Chip, PageHeader, PriorityChip, Presence, Select, StageChip, Tabs, Skeleton, useLoading, openItem, Field } from '../components/ui'
@@ -5,13 +6,14 @@ import { canAssign, clockOf, fmtDateTime, ms, TYPE_NAME } from '../lib'
 import { useRoute, go } from '../router'
 import type { WorkItem } from '../types'
 
-const TABS = ['Assigned', 'Rework', 'Due soon', 'Overdue', 'On hold'] as const
+const TABS = ['Assigned', 'Needs My Review', 'Waiting on Others', 'Recently Completed', 'Rework', 'Due soon', 'Overdue', 'On hold'] as const
 
 export default function Queue() {
   const loading = useLoading(300)
   const route = useRoute()
-  const tab = (route.q.get('tab') as (typeof TABS)[number]) || 'Assigned'
+  const selectedTab = route.q.get('tab') as (typeof TABS)[number] | null
   const { data, role, now, bulkReassign, toast } = useStore()
+  const tab = selectedTab || (role === 'Read-only' ? 'Recently Completed' : 'Assigned')
   const me = useMe()
   const all = useVisibleItems()
   const [f, setF] = useState({ confidential: false, exec: false, hold: false, type: 'All', pkg: 'All' })
@@ -21,13 +23,16 @@ export default function Queue() {
 
   const mine = useMemo(() => {
     const canSeeAll = canAssign(role) || role === 'Leadership' || role === 'Reviewer' || role === 'Executive Reviewer' || role === 'Budget Office'
-    return all.filter(i => i.stage !== 'Delivered' && (canSeeAll || i.assigneeIds.includes(me.id)))
+    return all.filter(i => (canSeeAll || i.assigneeIds.includes(me.id)))
   }, [all, role, me.id])
   const myRole = (i: WorkItem) => i.preparerId === me.id ? 'Preparer' : i.reviewerId === me.id ? 'Reviewer' : i.execChain.includes(me.id) ? 'Executive reviewer' : i.assigneeIds.includes(me.id) ? 'Contributor' : role === 'Assigner' ? 'Assigner' : 'Oversight'
 
   const inTab = (i: WorkItem) => {
     const c = clockOf(i, now)
     switch (tab) {
+      case 'Needs My Review': return i.stage === 'In review' && i.reviewerId === me.id || i.stage === 'Executive review' && i.execChain[i.execIndex] === me.id
+      case 'Waiting on Others': return i.assigneeIds.includes(me.id) && ['In review', 'Executive review'].includes(i.stage)
+      case 'Recently Completed': return i.stage === 'Delivered'
       case 'Assigned': return i.stage === 'Assigned' || i.stage === 'In progress' || i.stage === 'In review' || i.stage === 'Executive review'
       case 'Rework': return i.stage === 'Rework'
       case 'Due soon': return !i.onHold && ms(i.dueAt) - now < 24 * 3600_000 && c.state !== 'overdue'
@@ -37,7 +42,7 @@ export default function Queue() {
   }
   const rows = mine.filter(inTab).filter(i => (!f.confidential || i.confidential) && (!f.exec || i.execReview) && (!f.hold || i.onHold) && (f.type === 'All' || i.type === f.type) && (f.pkg === 'All' || (f.pkg === 'In a package' ? !!i.packageId : !i.packageId)))
     .sort((a, b) => ms(a.dueAt) - ms(b.dueAt))
-  const counts = Object.fromEntries(TABS.map(t => [t, mine.filter(i => { const old = tab; void old; return t === 'Assigned' ? ['Assigned', 'In progress', 'In review', 'Executive review'].includes(i.stage) : t === 'Rework' ? i.stage === 'Rework' : t === 'Due soon' ? !i.onHold && ms(i.dueAt) - now < 24 * 3600_000 && clockOf(i, now).state !== 'overdue' : t === 'Overdue' ? clockOf(i, now).state === 'overdue' : i.onHold }).length]))
+  const counts = Object.fromEntries(TABS.map(t => [t, mine.filter(i => { const old = tab; void old; return t === 'Assigned' ? ['Assigned', 'In progress', 'In review', 'Executive review'].includes(i.stage) : t === 'Needs My Review' ? (i.stage === 'In review' && i.reviewerId === me.id || i.stage === 'Executive review' && i.execChain[i.execIndex] === me.id) : t === 'Waiting on Others' ? i.assigneeIds.includes(me.id) && ['In review', 'Executive review'].includes(i.stage) : t === 'Recently Completed' ? i.stage === 'Delivered' : t === 'Rework' ? i.stage === 'Rework' : t === 'Due soon' ? !i.onHold && ms(i.dueAt) - now < 24 * 3600_000 && clockOf(i, now).state !== 'overdue' : t === 'Overdue' ? clockOf(i, now).state === 'overdue' : i.onHold }).length]))
 
   const applyView = (id: string) => {
     setView(id)
@@ -79,7 +84,7 @@ export default function Queue() {
           cols={[
             { key: 'id', header: 'ID', sort: i => i.id, render: i => <span className="flex items-center gap-2"><A to={i.type === 'FN' ? `/fiscal/${i.id}` : i.type === 'BA' ? `/analyses/${i.id}` : `/estimates/${i.id}`} className="font-semibold">{i.id}</A><Presence itemId={i.id} />{i.confidential && <Chip tone="neutral" icon="lock">Confidential</Chip>}{i.billChanged && <Chip tone="warn" icon="alert">Bill changed</Chip>}</span> },
             { key: 'type', header: 'Type', sort: i => i.type, render: i => TYPE_NAME[i.type] },
-            { key: 'bill', header: 'Bill', render: i => { const b = data.bills.find(x => x.id === i.billId)!; return <A to={`/bills/${b.id}`}>{b.number ?? 'Draft'}</A> } },
+            { key: 'bill', header: 'Bill', render: i => { const b = getBill(data, i.billId)!; return <A to={`/bills/${b.id}`}>{b.number ?? 'Draft'}</A> } },
             { key: 'role', header: 'My role', render: myRole },
             { key: 'due', header: 'My due date', sort: i => ms(i.dueAt), render: i => <div><div className="tnum">{fmtDateTime(i.dueAt)}</div><ClockChip item={i} /></div> },
             { key: 'cdue', header: 'Customer due', sort: i => ms(i.customerDueAt), render: i => <span className="tnum">{fmtDateTime(i.customerDueAt)}</span>, className: 'hidden xl:table-cell' },
