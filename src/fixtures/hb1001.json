@@ -1,0 +1,472 @@
+{
+      "biennium": "2021-22",
+      "billNumber": 1001,
+      "source": "Washington State Legislature LegislationService",
+      "retrievedAtUtc": "2026-10-01T13:00:15Z",
+      "billIds": [
+        "HB 1001"
+      ],
+      "endpoints": {
+        "GetLegislation": {
+          "ok": true,
+          "http_status": 200,
+          "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetLegislation?biennium=2021-22&billNumber=1001",
+          "data": {
+            "Legislation": {
+              "Biennium": "2021-22",
+              "BillId": "HB 1001",
+              "BillNumber": 1001,
+              "SubstituteVersion": 0,
+              "EngrossedVersion": 0,
+              "ShortLegislationType": {
+                "ShortLegislationType": "B",
+                "LongLegislationType": "Bill"
+              },
+              "OriginalAgency": "House",
+              "Active": true,
+              "StateFiscalNote": true,
+              "LocalFiscalNote": true,
+              "Appropriations": false,
+              "RequestedByGovernor": false,
+              "RequestedByBudgetCommittee": false,
+              "RequestedByDepartment": false,
+              "RequestedByOther": false,
+              "ShortDescription": "Law enf. professional dev.",
+              "Request": "H-0074.1",
+              "IntroducedDate": "2021-01-11T00:00:00",
+              "CurrentStatus": {
+                "BillId": "HB 1001",
+                "HistoryLine": "Effective date 7/25/2021.",
+                "ActionDate": "2021-04-16T00:00:00",
+                "AmendedByOppositeBody": false,
+                "PartialVeto": false,
+                "Veto": false,
+                "AmendmentsExist": false,
+                "Status": "C 52 L 21"
+              },
+              "Sponsor": "(Maycumber)",
+              "PrimeSponsorID": 14115,
+              "LongDescription": "Establishing a law enforcement professional development outreach grant program.",
+              "LegalTitle": "AN ACT Relating to establishing a law enforcement professional development outreach grant program;",
+              "Companions": null
+            }
+          }
+        },
+        "GetHearings": {
+          "ok": true,
+          "http_status": 200,
+          "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetHearings?biennium=2021-22&billNumber=1001",
+          "data": {
+            "Hearing": [
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28284,
+                  "Agency": "House",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 31634,
+                      "Name": "Appropriations",
+                      "LongName": "House Appropriations",
+                      "Agency": "House",
+                      "Acronym": "APP",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-01-19T15:30:00",
+                  "Cancelled": false,
+                  "RevisedDate": "0001-01-01T00:00:00",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "See https://app.leg.wa.gov/csiremote/house for information about viewing and providing public testimony at committee meetings.\n\nTo view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Public",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program. (Remote testimony.)"
+              },
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28485,
+                  "Agency": "House",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 31634,
+                      "Name": "Appropriations",
+                      "LongName": "House Appropriations",
+                      "Agency": "House",
+                      "Acronym": "APP",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-02-04T15:30:00",
+                  "Cancelled": false,
+                  "RevisedDate": "0001-01-01T00:00:00",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "See https://app.leg.wa.gov/csiremote/house for information about viewing and providing public testimony at committee meetings.\n\nTo view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Executive",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program."
+              },
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28690,
+                  "Agency": "Senate",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 17548,
+                      "Name": "Law & Justice",
+                      "LongName": "Senate Law & Justice",
+                      "Agency": "Senate",
+                      "Acronym": "LAW",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-02-25T08:30:00",
+                  "Cancelled": false,
+                  "RevisedDate": "0001-01-01T00:00:00",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "Possible other business. Meeting is scheduled to end at 10:00 a.m.\n\nSee https://app.leg.wa.gov/CSIRemote/Senate for testimony options. To view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Public",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program. (Remote testimony.)"
+              },
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28697,
+                  "Agency": "Senate",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 17548,
+                      "Name": "Law & Justice",
+                      "LongName": "Senate Law & Justice",
+                      "Agency": "Senate",
+                      "Acronym": "LAW",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-03-04T08:30:00",
+                  "Cancelled": false,
+                  "RevisedDate": "0001-01-01T00:00:00",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "Possible other business. Meeting is scheduled to end at 10:00 a.m.\n\nSee https://app.leg.wa.gov/CSIRemote/Senate for testimony options. To view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Executive",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program."
+              },
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28844,
+                  "Agency": "Senate",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 456,
+                      "Name": "Ways & Means",
+                      "LongName": "Senate Ways & Means",
+                      "Agency": "Senate",
+                      "Acronym": "WM",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-03-16T16:00:00",
+                  "Cancelled": false,
+                  "RevisedDate": "0001-01-01T00:00:00",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "Possible executive session on bills heard in committee. Possible other business.\n\nSee https://app.leg.wa.gov/CSIRemote/Senate for testimony options. To view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Public",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program. (Remote testimony.)"
+              },
+              {
+                "BillId": "HB 1001",
+                "Biennium": "2021-22",
+                "CommitteeMeeting": {
+                  "AgendaId": 28893,
+                  "Agency": "Senate",
+                  "Committees": {
+                    "Committee": {
+                      "Id": 456,
+                      "Name": "Ways & Means",
+                      "LongName": "Senate Ways & Means",
+                      "Agency": "Senate",
+                      "Acronym": "WM",
+                      "Phone": null
+                    }
+                  },
+                  "Room": "Virtual",
+                  "Building": null,
+                  "Address": ",",
+                  "City": null,
+                  "State": "",
+                  "ZipCode": 0,
+                  "Date": "2021-03-22T16:00:00",
+                  "Cancelled": false,
+                  "RevisedDate": "2021-03-22T12:57:17.143",
+                  "ContactInformation": null,
+                  "CommitteeType": "Full Committee",
+                  "Notes": "Possible other business.\n\nSee https://app.leg.wa.gov/CSIRemote/Senate for testimony options. To view committee meetings or access the committee meeting documents, visit the Legislature's committee schedules, agendas, and documents website:  https://app.leg.wa.gov/committeeschedules"
+                },
+                "HearingType": "Executive",
+                "HearingTypeDescription": "Establishing a law enforcement professional development outreach grant program."
+              }
+            ]
+          }
+        },
+        "GetCurrentStatus": {
+          "ok": true,
+          "http_status": 200,
+          "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetCurrentStatus?biennium=2021-22&billNumber=1001",
+          "data": {
+            "BillId": "HB 1001",
+            "HistoryLine": "Effective date 7/25/2021.",
+            "ActionDate": "2021-04-16T00:00:00",
+            "AmendedByOppositeBody": false,
+            "PartialVeto": false,
+            "Veto": false,
+            "AmendmentsExist": false,
+            "Status": "C 52 L 21"
+          }
+        },
+        "GetAmendmentsForYear": {
+          "2021": {
+            "ok": true,
+            "http_status": 200,
+            "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetAmendmentsForYear?year=2021&billNumber=1001",
+            "data": null
+          },
+          "2022": {
+            "ok": true,
+            "http_status": 200,
+            "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetAmendmentsForYear?year=2022&billNumber=1001",
+            "data": null
+          }
+        },
+        "GetAmendmentsForBiennium": {
+          "ok": true,
+          "http_status": 200,
+          "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetAmendmentsForBiennium?biennium=2021-22&billNumber=1001",
+          "data": null
+        },
+        "GetSponsors": {
+          "HB 1001": {
+            "ok": true,
+            "http_status": 200,
+            "request_url": "https://wslwebservices.leg.wa.gov/LegislationService.asmx/GetSponsors?biennium=2021-22&billId=HB+1001",
+            "data": {
+              "Sponsor": [
+                {
+                  "Id": 14115,
+                  "Name": "Maycumber",
+                  "LongName": "Representative Maycumber",
+                  "Agency": "House",
+                  "Acronym": "MAYC",
+                  "Type": "Primary",
+                  "Order": 0,
+                  "Phone": "(360) 786-7908",
+                  "Email": "MAYCUMBE_JA@leg.wa.gov",
+                  "FirstName": "Jacquelin",
+                  "LastName": "Maycumber"
+                },
+                {
+                  "Id": 3476,
+                  "Name": "Lovick",
+                  "LongName": "Representative Lovick",
+                  "Agency": "House",
+                  "Acronym": "LOVI",
+                  "Type": "Secondary",
+                  "Order": 1,
+                  "Phone": "(253) 275-1405",
+                  "Email": "john.lovick@leg.wa.gov",
+                  "FirstName": "John",
+                  "LastName": "Lovick"
+                },
+                {
+                  "Id": 15736,
+                  "Name": "Ryu",
+                  "LongName": "Representative Ryu",
+                  "Agency": "House",
+                  "Acronym": "RYUC",
+                  "Type": "Secondary",
+                  "Order": 2,
+                  "Phone": "(206) 307-0769",
+                  "Email": "cindy.ryu@leg.wa.gov",
+                  "FirstName": "Cindy",
+                  "LastName": "Ryu"
+                },
+                {
+                  "Id": 29094,
+                  "Name": "Boehnke",
+                  "LongName": "Representative Boehnke",
+                  "Agency": "House",
+                  "Acronym": "BOEH",
+                  "Type": "Secondary",
+                  "Order": 3,
+                  "Phone": "(509) 315-2315",
+                  "Email": "BOEHNKE_MA@leg.wa.gov",
+                  "FirstName": "Matt",
+                  "LastName": "Boehnke"
+                },
+                {
+                  "Id": 29102,
+                  "Name": "Leavitt",
+                  "LongName": "Representative Leavitt",
+                  "Agency": "House",
+                  "Acronym": "LEAV",
+                  "Type": "Secondary",
+                  "Order": 4,
+                  "Phone": "(360) 786-7890",
+                  "Email": "LEAVITT_MA@leg.wa.gov",
+                  "FirstName": "Mari",
+                  "LastName": "Leavitt"
+                },
+                {
+                  "Id": 29106,
+                  "Name": "Lekanoff",
+                  "LongName": "Representative Lekanoff",
+                  "Agency": "House",
+                  "Acronym": "LEKA",
+                  "Type": "Secondary",
+                  "Order": 5,
+                  "Phone": "(360) 786-7800",
+                  "Email": "LEKANOFF_DE@leg.wa.gov",
+                  "FirstName": "Debra",
+                  "LastName": "Lekanoff"
+                },
+                {
+                  "Id": 15816,
+                  "Name": "Tharinger",
+                  "LongName": "Representative Tharinger",
+                  "Agency": "House",
+                  "Acronym": "THAR",
+                  "Type": "Secondary",
+                  "Order": 6,
+                  "Phone": "(564) 888-2366",
+                  "Email": "steve.tharinger@leg.wa.gov",
+                  "FirstName": "Steve",
+                  "LastName": "Tharinger"
+                },
+                {
+                  "Id": 11999,
+                  "Name": "Goodman",
+                  "LongName": "Representative Goodman",
+                  "Agency": "House",
+                  "Acronym": "GOOD",
+                  "Type": "Secondary",
+                  "Order": 7,
+                  "Phone": "(425) 278-4047",
+                  "Email": "roger.goodman@leg.wa.gov",
+                  "FirstName": "Roger",
+                  "LastName": "Goodman"
+                },
+                {
+                  "Id": 18516,
+                  "Name": "Young",
+                  "LongName": "Representative Young",
+                  "Agency": "House",
+                  "Acronym": "YOUN",
+                  "Type": "Secondary",
+                  "Order": 8,
+                  "Phone": "(360) 786-7964",
+                  "Email": "Jesse.Young@leg.wa.gov",
+                  "FirstName": "Jesse",
+                  "LastName": "Young"
+                },
+                {
+                  "Id": 29093,
+                  "Name": "Graham",
+                  "LongName": "Representative Graham",
+                  "Agency": "House",
+                  "Acronym": "GRAH",
+                  "Type": "Secondary",
+                  "Order": 9,
+                  "Phone": "(509) 960-5393",
+                  "Email": "GRAHAM_JE@leg.wa.gov",
+                  "FirstName": "Jenny",
+                  "LastName": "Graham"
+                },
+                {
+                  "Id": 1543,
+                  "Name": "Cody",
+                  "LongName": "Representative Cody",
+                  "Agency": "House",
+                  "Acronym": "CODY",
+                  "Type": "Secondary",
+                  "Order": 10,
+                  "Phone": "(564) 888-2493",
+                  "Email": "eileen.cody@leg.wa.gov",
+                  "FirstName": "Eileen",
+                  "LastName": "Cody"
+                },
+                {
+                  "Id": 1580,
+                  "Name": "Robertson",
+                  "LongName": "Representative Robertson",
+                  "Agency": "House",
+                  "Acronym": "ROBE",
+                  "Type": "Secondary",
+                  "Order": 11,
+                  "Phone": "(360) 786-7866",
+                  "Email": "Eric.Robertson@leg.wa.gov",
+                  "FirstName": "Eric",
+                  "LastName": "Robertson"
+                },
+                {
+                  "Id": 30221,
+                  "Name": "J. Johnson",
+                  "LongName": "Representative J. Johnson",
+                  "Agency": "House",
+                  "Acronym": "JOHN",
+                  "Type": "Secondary",
+                  "Order": 12,
+                  "Phone": "(360) 786-7830",
+                  "Email": "JOHNSON_JE@leg.wa.gov",
+                  "FirstName": "Jesse",
+                  "LastName": "Johnson"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }

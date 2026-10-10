@@ -17,7 +17,6 @@ interface Store {
   userId: string
   now: number
   toasts: Toast[]
-  guideOpen: boolean
   navCollapsed: boolean
   drawerOpen: boolean
   simCount: number
@@ -28,7 +27,6 @@ interface Store {
   tick(): void
   toast(msg: string, kind?: Toast['kind']): void
   dismissToast(id: number): void
-  setGuide(v: boolean): void
   setNavCollapsed(v: boolean): void
   setDrawer(v: boolean): void
   // helpers
@@ -72,7 +70,7 @@ export const useStore = create<Store>((set, get) => {
   const initial = seeded()
   const startRole: Role = 'Analyst'
   return {
-    data: initial, role: startRole, userId: personaFor(initial, startRole).id, now: Date.now(), toasts: [], guideOpen: true,
+    data: initial, role: startRole, userId: personaFor(initial, startRole).id, now: Date.now(), toasts: [],
     navCollapsed: false, drawerOpen: false, simCount: 0,
 
     reset() {
@@ -93,7 +91,6 @@ export const useStore = create<Store>((set, get) => {
       set(s => ({ toasts: [...s.toasts, { id, kind, msg }].slice(-4) }))
     },
     dismissToast(id) { set(s => ({ toasts: s.toasts.filter(t => t.id !== id) })) },
-    setGuide(v) { set({ guideOpen: v }) },
     setNavCollapsed(v) { set({ navCollapsed: v }) },
     setDrawer(v) { set({ drawerOpen: v }) },
 
